@@ -7,10 +7,10 @@ import { Linkedin, Twitter, Github, MapPin, Calendar } from 'lucide-react';
 export function TeamDetail() {
   const teamMembers = [
     {
-      id: 'john-doe',
-      name: 'John Doe',
-      role: 'CEO & Founder',
-      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400',
+      id: 'Chairman',
+      name: 'MS. HẢI',
+      role: 'Chairman',
+      image: 'https://tlhvn.com/images/team/resized/haican_1615002453.jpg.webp',
       bio: 'Visionary leader with 15+ years in tech industry, specializing in digital transformation and strategic business development.',
       location: 'San Francisco, CA',
       joinDate: 'January 2015',
@@ -21,7 +21,7 @@ export function TeamDetail() {
       id: 'jane-smith',
       name: 'Jane Smith',
       role: 'CTO',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image: 'https://tlhvn.com/images/team/resized/1546047924239_1615001861.jpeg.webp',
       bio: 'Technology strategist specializing in scalable architectures, cloud computing, and emerging technologies.',
       location: 'New York, NY',
       joinDate: 'March 2016',
@@ -29,10 +29,10 @@ export function TeamDetail() {
       social: { linkedin: '#', twitter: '#', github: '#' },
     },
     {
-      id: 'mike-johnson',
-      name: 'Mike Johnson',
+      id: 'HEHEHE',
+      name: 'HEHEHE',
       role: 'Lead Developer',
-      image: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image: '/images/anh123.png',
       bio: 'Full-stack expert with passion for clean, efficient code and modern development practices.',
       location: 'Austin, TX',
       joinDate: 'July 2017',
@@ -89,7 +89,7 @@ export function TeamDetail() {
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Meet the passionate professionals behind TechFlow's success. Our diverse team 
+            Meet the passionate professionals behind FlexiNet's success. Our diverse team
             brings together expertise, innovation, and dedication to deliver exceptional results.
           </p>
         </motion.div>
@@ -181,7 +181,7 @@ export function TeamDetail() {
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             We're always looking for talented individuals who share our passion for technology 
-            and innovation. Explore career opportunities with TechFlow.
+            and innovation. Explore career opportunities with FlexiNet.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
