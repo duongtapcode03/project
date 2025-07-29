@@ -13,30 +13,30 @@ export function HighlightsSection() {
   const highlights = [
     {
       icon: Award,
-      title: 'Industry Recognition',
-      description: 'Winner of multiple technology excellence awards and certifications.',
-      stats: '15+ Awards',
+      title: 'Trusted Partner',
+      description: 'Reliable Outsourcing Partner of VIETTEL Group.',
+      stats: '10+ years',
       color: 'from-yellow-400 to-orange-500',
     },
     {
       icon: TrendingUp,
-      title: 'Growth Track Record',
-      description: 'Consistently delivering 300% ROI for our clients through innovative solutions.',
-      stats: '300% ROI',
+      title: 'DX & AI Edge',
+      description: 'Complete the apparatus Take DX, AI as core',
+      stats: '50% Cost Saved',
       color: 'from-green-400 to-blue-500',
     },
     {
       icon: Clock,
-      title: 'Fast Delivery',
-      description: 'Average project delivery 40% faster than industry standards.',
-      stats: '40% Faster',
+      title: 'Leading Clients',
+      description: 'Customers are large organizations such as VIETTEL, VDC, SBV...',
+      stats: '10+ Enterprise Clients',
       color: 'from-purple-400 to-pink-500',
     },
     {
       icon: Star,
-      title: 'Client Satisfaction',
-      description: 'Maintaining exceptional client satisfaction with 98% retention rate.',
-      stats: '98% Retention',
+      title: 'Growth rate 200%',
+      description: 'Within 6 months, achieve 50+ technical staff',
+      stats: 'Growth',
       color: 'from-blue-400 to-purple-500',
     },
   ];
@@ -53,7 +53,7 @@ export function HighlightsSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Why Choose TechFlow
+              HIGHLIGHTS
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -87,12 +87,12 @@ export function HighlightsSection() {
                   {highlight.description}
                 </p>
                 
-                <div className="mt-6 pt-4 border-t border-gray-100">
+                {/* <div className="mt-6 pt-4 border-t border-gray-100">
                   <button className="text-blue-600 font-medium hover:text-purple-600 transition-colors duration-200 flex items-center space-x-1 group-hover:translate-x-1 transition-transform">
                     <span>Learn More</span>
                     <span>→</span>
                   </button>
-                </div>
+                </div> */}
               </div>
             </motion.div>
           ))}

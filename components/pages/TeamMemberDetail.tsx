@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, Linkedin, Twitter, Github, MapPin, Calendar, Mail } from 'lucide-react';
+import Image from 'next/image';
 
 interface TeamMemberDetailProps {
   memberId: string;
