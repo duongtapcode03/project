@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 import { Linkedin, Twitter, Github } from 'lucide-react';
+import Image from 'next/image';
 
 export function TeamSection() {
   const [ref, inView] = useInView({

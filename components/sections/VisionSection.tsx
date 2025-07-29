@@ -42,11 +42,12 @@ export function VisionSection() {
                   <Eye className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">Vision</h3>
+                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">01</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    To be the global leader in technology innovation, empowering businesses 
-                    worldwide with cutting-edge solutions that drive digital transformation 
-                    and sustainable growth.
+                    To become the leading strategic partner in outsourcing services for the telecommunications
+and banking sectors, focusing on loyal, strategic clients and flexibly applying artificial
+intelligence to lead the digital transformation trend
+
                   </p>
                 </div>
               </div>
@@ -56,10 +57,11 @@ export function VisionSection() {
                   <Lightbulb className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">Innovation</h3>
+                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">02</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    We continuously push the boundaries of what's possible, embracing 
-                    emerging technologies and creative solutions to solve complex challenges.
+                    To build an intelligent service ecosystem focused on delivering highly innovative core
+applications, where technology and people connect flexibly to effectively and sustainably solve
+complex business challenges.
                   </p>
                 </div>
               </div>
@@ -69,10 +71,12 @@ export function VisionSection() {
                   <Globe className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">Global Impact</h3>
+                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">03</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Our solutions reach across continents, creating positive impact 
-                    and fostering technological advancement in diverse markets and communities.
+                    OTo lead the future of the outsourcing industry through a minimalist management model, with
+a strong focus on the quality of outsourcing personnel, and by combining implementation
+flexibility with the power of artificial intelligence.
+
                   </p>
                 </div>
               </div>
