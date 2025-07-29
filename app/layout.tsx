@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'TechFlow Solutions - Leading Technology Company',
+  title: 'FlexiNet Solutions - Leading Technology Company',
   description: 'Innovative technology solutions for modern businesses. Outsourcing, insourcing, and custom development services.',
 };
 

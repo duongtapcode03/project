@@ -14,20 +14,20 @@ export function ContactSection() {
     {
       icon: Mail,
       title: 'Email Us',
-      info: 'info@techflow.com',
+      info: 'Support@flexinet.com',
       description: 'Send us an email anytime',
     },
     {
       icon: Phone,
       title: 'Call Us',
-      info: '+1 (555) 123-4567',
+      info: '(+84) 983 340 568',
       description: 'Mon-Fri from 8am to 5pm',
     },
     {
       icon: MapPin,
-      title: 'Visit Us',
-      info: 'San Francisco, CA',
-      description: '123 Tech Street, Suite 100',
+      title: 'Hà Nội Office',
+      info: '6th Floor, Sannam Building',
+      description: '78 Duy Tan, Cau Giay, Hanoi',
     },
     {
       icon: Clock,

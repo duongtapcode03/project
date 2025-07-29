@@ -14,11 +14,15 @@ export function TeamSection() {
 
   const teamMembers = [
     {
-      id: 'john-doe',
-      name: 'John Doe',
-      role: 'CEO & Founder',
-      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Visionary leader with 15+ years in tech industry',
+      id: 'Chairman',
+      name: 'MS. HẢI',
+      role: 'Chairman',
+      image: 'https://tlhvn.com/images/team/resized/haican_1615002453.jpg.webp',
+      bio: '• 25+ years of experience in IT\n' +
+          '• Senior consultant at multinational\n' +
+          'companies such as IBM, PWC, AWS\n' +
+          '• Director of Strategy Department of VIETTEL\n' +
+          'Group.',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -26,11 +30,14 @@ export function TeamSection() {
       },
     },
     {
-      id: 'jane-smith',
-      name: 'Jane Smith',
+      id: 'CTO',
+      name: 'MR. THANH',
       role: 'CTO',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Technology strategist specializing in scalable architectures',
+      image: 'https://tlhvn.com/images/team/resized/1546047924239_1615001861.jpeg.webp',
+      bio: '• 20+ years of experience in IT\n' +
+          '• 10 years of CTO experience\n' +
+          '• Held positions as technical manager at\n' +
+          'VIETTEL and CTO at TLH Company',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -38,11 +45,17 @@ export function TeamSection() {
       },
     },
     {
-      id: 'mike-johnson',
-      name: 'Mike Johnson',
-      role: 'Lead Developer',
-      image: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Full-stack expert with passion for clean, efficient code',
+      id: 'CEO',
+      name: 'MS. LAN',
+      role: 'CEO',
+      image: '/images/anh123.png',
+      bio: '• 30+ years of experience in the IT field\n' +
+          '• 20 years of management experience\n' +
+          '• Held positions as Deputy General Director at\n' +
+          'CMCSOFT, Director of Government Sector at\n' +
+          'CMC Dr. Director of VNG\'s Northern Branch,\n' +
+          'Director of Vietnam Market Business of\n' +
+          'TekExprerts.',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -50,11 +63,12 @@ export function TeamSection() {
       },
     },
     {
-      id: 'sarah-wilson',
-      name: 'Sarah Wilson',
-      role: 'UX/UI Designer',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Creative designer focused on user-centered design solutions',
+      id: 'Leader',
+      name: 'MR. ĐỨC',
+      role: 'Leader',
+      image: 'https://tlhvn.com/images/images/2021/03/06/original/a1_1615002645.jpeg',
+      bio: 'Creative designer focused on user-centered design solutions and innovative digital experiences.',
+      location: 'DƯƠNG NỘI, HÀ NỘI',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -151,7 +165,7 @@ export function TeamSection() {
             </h3>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               We're always looking for talented individuals who share our passion for technology 
-              and innovation. Explore career opportunities with TechFlow.
+              and innovation. Explore career opportunities with FlexiNet.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">

@@ -11,13 +11,13 @@ export function AboutDetail() {
   });
 
   const milestones = [
-    { year: '2015', event: 'Company Founded', description: 'TechFlow Solutions was established with a vision to transform businesses through technology.' },
-    { year: '2017', event: 'First Major Contract', description: 'Secured our first enterprise client, marking a significant milestone in our growth journey.' },
-    { year: '2019', event: 'Global Expansion', description: 'Expanded operations internationally, serving clients across multiple continents.' },
+    { year: '2019', event: 'First Major Contract', description: 'Secured our first enterprise client, marking a significant milestone in our growth journey.' },
+    { year: '2020', event: 'Global Expansion', description: 'Expanded operations internationally, serving clients across multiple continents.' },
     { year: '2021', event: '500+ Projects', description: 'Successfully completed over 500 projects for clients worldwide.' },
-    { year: '2023', event: 'Industry Recognition', description: 'Received multiple industry awards for excellence in technology solutions.' },
-    { year: '2024', event: 'AI Innovation Lab', description: 'Launched our AI Innovation Lab to explore cutting-edge artificial intelligence solutions.' },
-  ];
+    { year: '2022', event: 'Industry Recognition', description: 'Received multiple industry awards for excellence in technology solutions.' },
+    { year: '2023', event: 'AI Innovation Lab', description: 'Launched our AI Innovation Lab to explore cutting-edge artificial intelligence solutions.' },
+    { year: '2024', event: 'Sustainability Initiative', description: 'Implemented eco-friendly coding practices and strategies to minimize energy consumption in our data centers, demonstrating our commitment to sustainable technology development.' },
+    { year: '2025', event: 'Technological Breakthrough', description: 'Released a cutting-edge software development framework that enhances productivity and collaboration among developers, transforming the way teams build and deploy applications.' },  ];
 
   const values = [
     {
@@ -63,7 +63,7 @@ export function AboutDetail() {
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              About TechFlow
+              About FLEXINET
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -84,20 +84,18 @@ export function AboutDetail() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Our Story</h2>
             <div className="prose prose-lg mx-auto text-gray-600">
               <p className="mb-6">
-                Founded in 2015, TechFlow Solutions began with a simple yet powerful vision: to bridge 
-                the gap between cutting-edge technology and real-world business needs. Our founders, 
-                recognizing the rapid pace of digital transformation, set out to create a company that 
-                could help businesses navigate the complex landscape of modern technology.
+                FlexiNet is a company specializing in outsourcing services in the fields of
+                telecommunications and banking, backed by a team of experienced
+                professionals with deep technological expertise. We partner with businesses to
+                optimize operations, enhance efficiency, and accelerate digital transformation.
               </p>
               <p className="mb-6">
-                From our humble beginnings as a small team of passionate developers, we have grown into 
-                a global technology partner serving clients across various industries. Our journey has 
-                been marked by continuous learning, adaptation, and an unwavering commitment to excellence.
-              </p>
-              <p>
-                Today, TechFlow Solutions stands as a testament to the power of innovation, collaboration, 
-                and dedication. We continue to evolve, embracing new technologies and methodologies to 
-                ensure our clients stay ahead in an increasingly competitive digital world.
+                Guided by the principle “Driven by Flexibility, Powered by AI” FlexiNet
+                continuously innovates and leverages advanced artificial intelligence solutions
+                to deliver long-term, practical value to our clients. We believe that flexibility in
+                thinking and execution is the key to adapting in a constantly changing
+                business environment, while AI serves as the engine that drives efficiency and
+                breakthrough performance.
               </p>
             </div>
           </div>
@@ -169,7 +167,7 @@ export function AboutDetail() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">TechFlow by the Numbers</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12">FlexiNet by the Numbers</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="text-4xl md:text-5xl font-bold mb-2">500+</div>

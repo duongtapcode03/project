@@ -45,7 +45,7 @@ export function AboutSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              About TechFlow
+              About FlexiNet
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -81,7 +81,7 @@ export function AboutSection() {
         >
           <h3 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h3>
           <p className="text-xl mb-8 opacity-90">
-            Join hundreds of companies that trust TechFlow for their technology needs.
+            Join hundreds of companies that trust FlexiNet for their technology needs.
           </p>
           <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
             Start Your Project

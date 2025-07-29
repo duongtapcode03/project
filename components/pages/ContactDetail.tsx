@@ -14,16 +14,16 @@ export function ContactDetail() {
     {
       icon: Mail,
       title: 'Email',
-      primary: 'info@techflow.com',
-      secondary: 'support@techflow.com',
+      primary: 'Support@flexinet.com',
+      secondary: 'Support@flexinet.com',
       description: 'Send us an email and we\'ll respond within 24 hours',
       action: 'Send Email',
     },
     {
       icon: Phone,
       title: 'Phone',
-      primary: '+1 (555) 123-4567',
-      secondary: '+1 (555) 123-4568',
+      primary: '(+84)983 340 568',
+      secondary: '(+84)983 340 568',
       description: 'Call us Monday to Friday from 8am to 5pm PST',
       action: 'Call Now',
     },
@@ -47,21 +47,21 @@ export function ContactDetail() {
 
   const offices = [
     {
-      city: 'San Francisco',
-      address: '123 Tech Street, Suite 100\nSan Francisco, CA 94105',
-      phone: '+1 (555) 123-4567',
+      city: 'Hà Nội',
+      address: '6th Floor, Sannam Building, 78 Duy Tan, Cau Giay, Hanoi',
+      phone: '(+84)983 340 568',
       hours: 'Mon-Fri: 8:00 AM - 6:00 PM PST',
     },
     {
-      city: 'New York',
-      address: '456 Innovation Ave, Floor 15\nNew York, NY 10001',
-      phone: '+1 (555) 234-5678',
+      city: 'Hà Nội',
+      address: 'Tầng 42 - Tòa nhà Keangnam Landmark 72',
+      phone: '(+84)983 340 568',
       hours: 'Mon-Fri: 9:00 AM - 7:00 PM EST',
     },
     {
-      city: 'Austin',
-      address: '789 Developer Blvd, Building C\nAustin, TX 78701',
-      phone: '+1 (555) 345-6789',
+      city: 'Hà Nội',
+      address: 'Tòa nhà Thái Hà Building - 26 Dương Đình Nghệ',
+      phone: '(+84)983 340 568',
       hours: 'Mon-Fri: 8:00 AM - 5:00 PM CST',
     },
   ];
@@ -170,7 +170,7 @@ export function ContactDetail() {
                 <input
                   type="tel"
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+84 123 456 789"
                 />
               </div>
               

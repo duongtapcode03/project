@@ -106,7 +106,7 @@ export function HighlightsSection() {
         >
           <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-3xl p-8 md:p-12">
             <h3 className="text-3xl font-bold mb-6 text-gray-900">
-              Ready to Experience the TechFlow Difference?
+              Ready to Experience the FlexiNet Difference?
             </h3>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Join our growing list of satisfied clients and discover how we can accelerate your business growth.

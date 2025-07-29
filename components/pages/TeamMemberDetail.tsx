@@ -12,19 +12,23 @@ interface TeamMemberDetailProps {
 export function TeamMemberDetail({ memberId }: TeamMemberDetailProps) {
   // Mock data - in a real app, this would come from an API or database
   const teamMembers: Record<string, any> = {
-    'john-doe': {
-      name: 'John Doe',
-      role: 'CEO & Founder',
-      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bio: 'Visionary leader with 15+ years in the technology industry, John has been at the forefront of digital transformation initiatives across various sectors. His expertise in strategic planning and business development has helped numerous companies navigate the complex landscape of modern technology.',
-      location: 'San Francisco, CA',
-      joinDate: 'January 2015',
-      email: 'john.doe@techflow.com',
+    'MS. HAI': {
+      name: 'MS. HẢI',
+      role: 'Chairman',
+      image: 'https://tlhvn.com/images/team/resized/haican_1615002453.jpg.webp',
+      bio: '• 25+ years of experience in IT\n' +
+          '• Senior consultant at multinational\n' +
+          'companies such as IBM, PWC, AWS\n' +
+          '• Director of Strategy Department of VIETTEL\n' +
+          'Group.',
+      location: 'Hà Nội',
+      joinDate: 'January 2019',
+      email: 'john.doe@tlhvn.com',
       expertise: ['Strategic Planning', 'Business Development', 'Team Leadership', 'Digital Transformation', 'Startup Mentoring'],
       experience: [
         {
           title: 'CEO & Founder',
-          company: 'TechFlow Solutions',
+          company: 'FlexiNet Solutions',
           period: '2015 - Present',
           description: 'Leading the company vision and strategic direction, overseeing all operations and business development.',
         },

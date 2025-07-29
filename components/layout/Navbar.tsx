@@ -38,8 +38,16 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg">
-              <Code2 className="h-6 w-6 text-white" />
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1 rounded-lg">
+              <img
+                  src="/images/0a379107-9b83-4a8d-a19b-5139bedca43a.jpeg"
+                  alt="Logo"
+                  width={60}
+                  height={60}
+                  className="object-contain rounded-md"
+                  // className="object-contain"
+                  // className="h-6 w-6 object-contain" // Điều chỉnh kích thước và kiểu hiển thị
+              />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               FLEXINET
