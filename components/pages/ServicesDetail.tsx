@@ -3,62 +3,15 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import { serviceData } from '@/assets/data/service'; // Đường dẫn tới file chứa dữ liệu
 
 export function ServicesDetail() {
-  const services = [
-    {
-      title: 'Custom Development',
-      description: 'Tailored software solutions built from the ground up to meet your specific business needs and requirements.',
-      features: [
-        'Web Application Development',
-        'Mobile App Development (iOS/Android)',
-        'Desktop Software Solutions',
-        'API Development & Integration',
-        'Database Design & Optimization',
-        'Third-party System Integration',
-      ],
-      technologies: ['React', 'Node.js', 'Python', 'Java', 'Swift', 'Kotlin'],
-      pricing: 'Starting from $5,000',
-      timeline: '4-12 weeks',
-      link: '/services/custom-development',
-    },
-    {
-      title: 'Outsourcing Services',
-      description: 'Scale your development team with our expert professionals while reducing operational costs and time-to-market.',
-      features: [
-        'Dedicated Development Teams',
-        'Project-Based Development',
-        'Staff Augmentation',
-        '24/7 Development Support',
-        'Quality Assurance & Testing',
-        'Ongoing Maintenance & Support',
-      ],
-      technologies: ['Full-stack', 'DevOps', 'QA Testing', 'UI/UX Design'],
-      pricing: 'From $25/hour',
-      timeline: 'Immediate start',
-      link: '/services/outsourcing',
-    },
-    {
-      title: 'Insourcing Solutions',
-      description: 'Bring our expertise directly into your organization for seamless collaboration and knowledge transfer.',
-      features: [
-        'On-site Development Teams',
-        'Knowledge Transfer Programs',
-        'Process Integration & Training',
-        'Long-term Strategic Partnership',
-        'Technology Consulting',
-        'Team Leadership & Management',
-      ],
-      technologies: ['Enterprise Systems', 'Legacy Migration', 'Architecture Design'],
-      pricing: 'Custom pricing',
-      timeline: '2-4 weeks setup',
-      link: '/services/insourcing',
-    },
-  ];
+  const { heading, services, cta } = serviceData.servicesDetailData;
 
   return (
     <div className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,15 +20,13 @@ export function ServicesDetail() {
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Our Services
+              {heading.title}
             </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive technology solutions designed to accelerate your business growth 
-            and digital transformation journey.
-          </p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">{heading.subtitle}</p>
         </motion.div>
 
+        {/* Services List */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -87,7 +38,7 @@ export function ServicesDetail() {
             >
               <h2 className="text-2xl font-bold mb-4 text-gray-900">{service.title}</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-              
+
               <div className="mb-6">
                 <h3 className="font-semibold text-gray-900 mb-3">Key Features:</h3>
                 <ul className="space-y-2">
@@ -99,7 +50,7 @@ export function ServicesDetail() {
                   ))}
                 </ul>
               </div>
-              
+
               <div className="mb-6">
                 <h3 className="font-semibold text-gray-900 mb-3">Technologies:</h3>
                 <div className="flex flex-wrap gap-2">
@@ -113,7 +64,7 @@ export function ServicesDetail() {
                   ))}
                 </div>
               </div>
-              
+
               <div className="border-t pt-6 mt-6">
                 <div className="flex justify-between items-center mb-4">
                   <div>
@@ -125,7 +76,7 @@ export function ServicesDetail() {
                     <p className="font-bold text-gray-900">{service.timeline}</p>
                   </div>
                 </div>
-                
+
                 <Link
                   href={service.link}
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
@@ -138,29 +89,35 @@ export function ServicesDetail() {
           ))}
         </div>
 
+        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Need a Custom Solution?
-          </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Every business is unique. We create tailored solutions that perfectly match 
-            your specific requirements and goals.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{cta.title}</h2>
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">{cta.subtitle}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
-            >
-              Get Free Consultation
-            </Link>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-200">
-              View Portfolio
-            </button>
+            {cta.buttons.map((btn) =>
+              btn.primary ? (
+                <Link
+                  key={btn.label}
+                  href={btn.href}
+                  className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+                >
+                  {btn.label}
+                </Link>
+              ) : (
+                <Link
+                  key={btn.label}
+                  href={btn.href}
+                  className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-200"
+                >
+                  {btn.label}
+                </Link>
+              )
+            )}
           </div>
         </motion.div>
       </div>

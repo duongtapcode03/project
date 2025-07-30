@@ -3,8 +3,12 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Play } from 'lucide-react';
+import { heroSectionData } from '@/assets/data/sections'; // 👈 import đúng file
 
 export function HeroSection() {
+  // Destructuring heroSectionData
+  const { title, description, buttons, stats } = heroSectionData;
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Background Animation */}
@@ -20,37 +24,42 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
-              Future-Ready
-            </span>
-            <br />
-            <span className="text-gray-900">Technology Solutions</span>
-          </h1>
-          
+          <h1
+            className="text-5xl md:text-7xl font-bold mb-6"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
+
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            We transform businesses through innovative technology, expert development, 
-            and strategic partnerships that drive growth and success.
+            {description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              href="/contact"
-              className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
-            >
-              <span>Get Started Today</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            
-            <button className="group flex items-center space-x-2 text-gray-700 hover:text-blue-600 font-semibold transition-colors duration-200">
-              <div className="bg-white rounded-full p-3 shadow-lg group-hover:shadow-xl transition-shadow">
-                <Play className="h-6 w-6 text-blue-600" />
-              </div>
-              <span>Watch Demo</span>
-            </button>
+            {buttons.map(({ text, link, type }) =>
+              type === 'primary' ? (
+                <Link
+                  key={text}
+                  href={link}
+                  className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
+                >
+                  <span>{text}</span>
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              ) : (
+                <button
+                  key={text}
+                  className="group flex items-center space-x-2 text-gray-700 hover:text-blue-600 font-semibold transition-colors duration-200"
+                >
+                  <div className="bg-white rounded-full p-3 shadow-lg group-hover:shadow-xl transition-shadow">
+                    <Play className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <span>{text}</span>
+                </button>
+              )
+            )}
           </div>
         </motion.div>
 
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,18 +67,15 @@ export function HeroSection() {
           className="mt-16"
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-gray-600">Projects Completed</div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
-              <div className="text-gray-600">Expert Developers</div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-3xl font-bold text-teal-600 mb-2">99%</div>
-              <div className="text-gray-600">Client Satisfaction</div>
-            </div>
+            {stats.map(({ title, description }) => (
+              <div
+                key={title}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="text-3xl font-bold mb-2">{title}</div>
+                <div className="text-gray-600">{description}</div>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

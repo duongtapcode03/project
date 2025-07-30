@@ -2,17 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Eye, Lightbulb, Globe, Rocket } from 'lucide-react';
+import { visionSectionData } from '@/assets/data/sections'; // 👈 import đúng file
 
 export function VisionSection() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  const { title, description, visions, highlightCard } = visionSectionData;
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Title */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -22,67 +23,35 @@ export function VisionSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Our Vision & Values
+              {title}
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Shaping the future of technology through innovation, excellence, and unwavering commitment to our clients' success.
-          </p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">{description}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Vision List */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-3">
-                  <Eye className="h-6 w-6 text-white" />
+              {visions.map(({ icon: Icon, number, text, color }) => (
+                <div key={number} className="flex items-start space-x-4">
+                  <div className={`bg-gradient-to-r ${color} rounded-lg p-3`}>
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-3 text-gray-900">{number}</h3>
+                    <p className="text-gray-600 leading-relaxed">{text}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">01</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    To become the leading strategic partner in outsourcing services for the telecommunications
-and banking sectors, focusing on loyal, strategic clients and flexibly applying artificial
-intelligence to lead the digital transformation trend
-
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-3">
-                  <Lightbulb className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">02</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    To build an intelligent service ecosystem focused on delivering highly innovative core
-applications, where technology and people connect flexibly to effectively and sustainably solve
-complex business challenges.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="bg-gradient-to-r from-pink-500 to-red-500 rounded-lg p-3">
-                  <Globe className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">03</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    OTo lead the future of the outsourcing industry through a minimalist management model, with
-a strong focus on the quality of outsourcing personnel, and by combining implementation
-flexibility with the power of artificial intelligence.
-
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </motion.div>
 
+          {/* Highlight Card */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -94,22 +63,17 @@ flexibility with the power of artificial intelligence.
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
               
               <div className="relative z-10">
-                <Rocket className="h-12 w-12 mb-6 text-white" />
-                <h3 className="text-2xl font-bold mb-4">Future-Ready Solutions</h3>
-                <p className="text-lg mb-6 opacity-90">
-                  We don't just build for today – we architect solutions that scale 
-                  and adapt to tomorrow's challenges and opportunities.
-                </p>
+                <highlightCard.icon className="h-12 w-12 mb-6 text-white" />
+                <h3 className="text-2xl font-bold mb-4">{highlightCard.title}</h3>
+                <p className="text-lg mb-6 opacity-90">{highlightCard.description}</p>
                 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/20 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold">10+</div>
-                    <div className="text-sm opacity-80">Years Experience</div>
-                  </div>
-                  <div className="bg-white/20 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold">100+</div>
-                    <div className="text-sm opacity-80">Global Clients</div>
-                  </div>
+                  {highlightCard.stats.map(({ value, label }) => (
+                    <div key={label} className="bg-white/20 rounded-lg p-4 text-center">
+                      <div className="text-2xl font-bold">{value}</div>
+                      <div className="text-sm opacity-80">{label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
