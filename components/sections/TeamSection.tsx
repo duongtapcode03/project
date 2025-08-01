@@ -1,25 +1,35 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Link from 'next/link';
-import { Linkedin, Twitter, Github } from 'lucide-react';
-import { teamData } from '@/assets/data/team';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Link from "next/link";
+import { Linkedin, Twitter, Github } from "lucide-react";
+import { useTeamData } from "@/hooks/useTeamData";
 
 export function TeamSection() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { data, loading, error } = useTeamData();
 
-  // Lấy ra các member có role là Chairman, CTO, CEO, Leader
-  const teamMembers = teamData.overview.teamMembers.filter((m) =>
-    ['Chairman', 'CTO', 'CEO', 'Leader'].includes(m.role)
+  if (loading) return <div className="text-center py-20">Loading team...</div>;
+  if (error || !data)
+    return (
+      <div className="text-center py-20 text-red-500">
+        Failed to load team data.
+      </div>
+    );
+
+  const { title, subtitle, cta, teamMembers } = data.overview;
+
+  // Chỉ lấy Chairman, CTO, CEO, Leader
+  const filteredMembers = teamMembers.filter((m) =>
+    ["Chairman", "CTO", "CEO", "Leader"].includes(m.role)
   );
 
   return (
     <section id="team" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -29,16 +39,15 @@ export function TeamSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {teamData.overview.title}
+              {title}
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {teamData.overview.subtitle}
-          </p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
         </motion.div>
 
+        {/* Team Members */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
+          {filteredMembers.map((member, index) => (
             <motion.div
               key={member.id}
               initial={{ opacity: 0, y: 30 }}
@@ -48,6 +57,8 @@ export function TeamSection() {
             >
               <Link href={`/team/${member.id}`}>
                 <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+                  
+                  {/* Avatar */}
                   <div className="relative mb-6">
                     <img
                       src={member.image}
@@ -57,34 +68,44 @@ export function TeamSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
+                  {/* Info */}
                   <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
                     {member.name}
                   </h3>
                   <p className="text-blue-600 font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">{member.bio}</p>
+                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                    {member.bio}
+                  </p>
 
+                  {/* Social Links */}
                   <div className="flex space-x-3">
-                    <a
-                      href={member.social.linkedin}
-                      className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Linkedin className="h-4 w-4" />
-                    </a>
-                    <a
-                      href={member.social.twitter}
-                      className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Twitter className="h-4 w-4" />
-                    </a>
-                    <a
-                      href={member.social.github}
-                      className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Github className="h-4 w-4" />
-                    </a>
+                    {member.social.linkedin && (
+                      <a
+                        href={member.social.linkedin}
+                        className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Linkedin className="h-4 w-4" />
+                      </a>
+                    )}
+                    {member.social.twitter && (
+                      <a
+                        href={member.social.twitter}
+                        className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Twitter className="h-4 w-4" />
+                      </a>
+                    )}
+                    {member.social.github && (
+                      <a
+                        href={member.social.github}
+                        className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Github className="h-4 w-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </Link>
@@ -92,6 +113,7 @@ export function TeamSection() {
           ))}
         </div>
 
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -99,15 +121,14 @@ export function TeamSection() {
           className="mt-16 text-center"
         >
           <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg">
-            <h3 className="text-3xl font-bold mb-6 text-gray-900">
-              {teamData.overview.cta.headline}
-            </h3>
+            <h3 className="text-3xl font-bold mb-6 text-gray-900">{cta.headline}</h3>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              {teamData.overview.cta.description}
+              {cta.description}
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {teamData.overview.cta.buttons.map((btn) =>
-                btn.variant === 'primary' ? (
+              {cta.buttons.map((btn) =>
+                btn.variant === "primary" ? (
                   <Link
                     key={btn.label}
                     href={btn.link}

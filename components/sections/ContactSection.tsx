@@ -1,19 +1,24 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import {contactData} from "@/assets/data/contact";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useContactData } from "@/hooks/useContactData";
+import { getDynamicIcon } from "@/lib/useDynamicIcon";
 
 export function ContactSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { data, loading, error } = useContactData();
 
-  // Destructuring từ contactData
+  if (loading) return <div className="text-center py-20">Loading...</div>;
+  if (error || !data)
+    return <div className="text-center py-20 text-red-500">Failed to load contact data.</div>;
+
   const {
     headerContactSecTion,
     form: { fields, submitButton },
     contacts,
     support,
-  } = contactData;
+  } = data;
 
   return (
     <section id="contact" className="py-20 bg-white">
@@ -51,7 +56,7 @@ export function ContactSection() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     {placeholder}
                   </label>
-                  {type === 'textarea' ? (
+                  {type === "textarea" ? (
                     <textarea
                       rows={4}
                       placeholder={placeholder}
@@ -59,7 +64,7 @@ export function ContactSection() {
                     ></textarea>
                   ) : (
                     <input
-                      type={type || 'text'}
+                      type={type || "text"}
                       placeholder={placeholder}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                     />
@@ -83,26 +88,30 @@ export function ContactSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="space-y-8">
-              {contacts.map(({ icon: Icon, title, info, description }, index) => (
-                <motion.div
-                  key={title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="flex items-start space-x-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-                >
-                  <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-3">
-                    <Icon className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1">{title}</h4>
-                    <p className="text-blue-600 font-medium mb-1">{info}</p>
-                    <p className="text-gray-600 text-sm">{description}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {contacts.map(({ icon, title, info, description }, index) => {
+                const Icon = getDynamicIcon(icon);
+                return (
+                  <motion.div
+                    key={title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                    className="flex items-start space-x-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-3">
+                      <Icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{title}</h4>
+                      <p className="text-blue-600 font-medium mb-1">{info}</p>
+                      <p className="text-gray-600 text-sm">{description}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
+            {/* Support Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}

@@ -1,20 +1,23 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { highlightsData } from '@/assets/data/sections'; // 👈 import đúng file
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useHighlightData } from "@/hooks/useHighlightData";
+import { getDynamicIcon } from "@/lib/useDynamicIcon";
 
 export function HighlightsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { data, loading, error } = useHighlightData();
 
-  // Destructuring
-  const { title, description, highlights, cta } = highlightsData;
+  if (loading) return <p>Loading...</p>;
+  if (error || !data) return <p>Error loading data</p>;
+
+  const { title, description, highlights, cta } = data;
 
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Title */}
+        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -32,37 +35,42 @@ export function HighlightsSection() {
           </p>
         </motion.div>
 
-        {/* Highlights Cards */}
+        {/* Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {highlights.map(({ icon: Icon, title, description, stats, color }, index) => (
-            <motion.div
-              key={title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-                <div className={`bg-gradient-to-r ${color} rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className="h-8 w-8 text-white" />
-                </div>
+          {highlights.map((item, index) => {
+            const Icon = getDynamicIcon(item.icon);
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                  <div
+                    className={`bg-gradient-to-r ${item.color} rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <Icon className="h-8 w-8 text-white" />
+                  </div>
 
-                <div className={`text-3xl font-bold mb-2 bg-gradient-to-r ${color} bg-clip-text text-transparent`}>
-                  {stats}
-                </div>
+                  <div
+                    className={`text-3xl font-bold mb-2 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
+                  >
+                    {item.stats}
+                  </div>
 
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                  {title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* CTA Section */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -77,17 +85,13 @@ export function HighlightsSection() {
               {cta.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {cta.buttons.map(({ text, link }, i) => (
+              {cta.buttons.map((btn) => (
                 <a
-                  key={i}
-                  href={link}
-                  className={`px-8 py-3 rounded-full font-semibold transition-all duration-200 ${
-                    i === 0
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg transform hover:scale-105'
-                      : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'
-                  }`}
+                  key={btn.text}
+                  href={btn.link}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
                 >
-                  {text}
+                  {btn.text}
                 </a>
               ))}
             </div>

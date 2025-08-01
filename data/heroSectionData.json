@@ -1,0 +1,13 @@
+{
+  "title": ["Future-Ready","Technology Solutions"],
+  "description": "We transform businesses through innovative technology, expert development, and strategic partnerships that drive growth and success.",
+  "buttons": [
+    { "text": "Get Started Today", "link": "/contact", "type": "primary" },
+    { "text": "Watch Demo", "link": "/demo", "type": "secondary" }
+  ],
+  "stats": [
+    { "title": "500+", "description": "Projects Completed" },
+    { "title": "50+", "description": "Expert Developers" },
+    { "title": "99%", "description": "Client Satisfaction" }
+  ]
+}

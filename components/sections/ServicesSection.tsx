@@ -1,23 +1,25 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
-import { serviceData } from '@/assets/data/service'; // Đường dẫn tới file chứa dữ liệu
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+import { useServiceData } from "@/hooks/useServiceData";
+import { getDynamicIcon } from "@/lib/useDynamicIcon";
 
 export function ServicesSection() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { data, loading, error } = useServiceData();
 
-  // Lấy data từ serviceData
-  const { heading, services, additionalServices, cta } = serviceData.servicesData;
+  if (loading) return <div className="text-center py-20">Loading...</div>;
+  if (error || !data) return <div className="text-center py-20 text-red-500">Failed to load services.</div>;
+
+  const { heading, services, additionalServices, cta } = data.servicesData;
 
   return (
     <section id="services" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Heading */}
         <motion.div
           ref={ref}
@@ -36,40 +38,44 @@ export function ServicesSection() {
 
         {/* Main Services */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
-            >
-              <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300">
-                {/* service.icon là React Component */}
-                <service.icon className="h-8 w-8 text-white" />
-              </div>
-
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.title}</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-
-              <ul className="space-y-2 mb-8">
-                {service.features.map((feature) => (
-                  <li key={feature} className="flex items-center text-gray-600">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href={service.link}
-                className="inline-flex items-center space-x-2 text-blue-600 font-semibold hover:text-purple-600 transition-colors duration-200 group-hover:translate-x-1 transition-transform"
+          {services.map((service, index) => {
+            const Icon = getDynamicIcon(service.icon);
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
               >
-                <span>Learn More</span>
-                <ExternalLink className="h-4 w-4" />
-              </Link>
-            </motion.div>
-          ))}
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="h-8 w-8 text-white" />
+                </div>
+
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
+
+                <ul className="space-y-2 mb-8">
+                  {service.features?.map((feature) => (
+                    <li key={feature} className="flex items-center text-gray-600">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                {service.link && (
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center space-x-2 text-blue-600 font-semibold hover:text-purple-600 transition-colors duration-200 group-hover:translate-x-1 transition-transform"
+                  >
+                    <span>Learn More</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </Link>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Additional Services */}
@@ -78,26 +84,27 @@ export function ServicesSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">
-            Additional Expertise
-          </h3>
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">Additional Expertise</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {additionalServices.map((service) => (
-              <div
-                key={service.title}
-                className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300"
-              >
-                <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-3 w-fit mx-auto mb-4">
-                  <service.icon className="h-6 w-6 text-white" />
+            {additionalServices.map((service) => {
+              const Icon = getDynamicIcon(service.icon);
+              return (
+                <div
+                  key={service.title}
+                  className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-3 w-fit mx-auto mb-4">
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-2">{service.title}</h4>
+                  <p className="text-gray-600 text-sm">{service.description}</p>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-2">{service.title}</h4>
-                <p className="text-gray-600 text-sm">{service.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
 
-        {/* CTA Section */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -106,6 +113,7 @@ export function ServicesSection() {
         >
           <h3 className="text-3xl md:text-4xl font-bold mb-6">{cta.title}</h3>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">{cta.subtitle}</p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {cta.buttons.map((btn) =>
               btn.primary ? (

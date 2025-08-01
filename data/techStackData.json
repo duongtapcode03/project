@@ -1,0 +1,31 @@
+{
+  "title": "Our Tech Stack",
+  "description": "We leverage cutting-edge technologies and frameworks to build robust, scalable, and future-proof solutions for our clients.",
+  "categories": [
+    {
+      "category": "Frontend",
+      "techs": ["React", "Next.js", "Vue.js", "Angular", "TypeScript", "Tailwind CSS"],
+      "color": "from-blue-500 to-cyan-500"
+    },
+    {
+      "category": "Backend",
+      "techs": ["Node.js", "Python", "Java", "C#", ".NET", "Go"],
+      "color": "from-green-500 to-teal-500"
+    },
+    {
+      "category": "Database",
+      "techs": ["PostgreSQL", "MongoDB", "MySQL", "Redis", "DynamoDB", "Firebase"],
+      "color": "from-purple-500 to-pink-500"
+    },
+    {
+      "category": "Cloud & DevOps",
+      "techs": ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "Jenkins"],
+      "color": "from-orange-500 to-red-500"
+    }
+  ],
+  "cta": {
+    "title": "Don't See Your Preferred Technology?",
+    "description": "Our team is always learning and adapting. We can work with virtually any technology stack to meet your specific requirements.",
+    "button": { "text": "Discuss Your Project", "link": "/contact" }
+  }
+}

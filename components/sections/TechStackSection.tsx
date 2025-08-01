@@ -2,19 +2,27 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { techStackSectionData } from '@/assets/data/sections'; // 👈 import đúng file
+import { useTechStackData } from '@/hooks/useTechStackData';
 
 export function TechStackSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { data, loading, error } = useTechStackData();
 
-  // Destructuring
-  const { title, description, categories, cta } = techStackSectionData;
+  // Nếu đang loading hoặc có lỗi
+  if (loading) return <p className="text-center py-10">Loading...</p>;
+  if (error || !data) return <p className="text-center py-10 text-red-500">Failed to load data.</p>;
+
+  const { title, description, categories, cta } = data;
+
+  // Hàm lấy màu với fallback
+  const getColor = (color?: string) =>
+    color && color.includes('from-') ? color : 'from-blue-500 to-purple-500';
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Title */}
+        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -32,33 +40,44 @@ export function TechStackSection() {
 
         {/* Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {categories.map(({ category, techs, color }, index) => (
-            <motion.div
-              key={category}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-            >
-              <div className={`bg-gradient-to-r ${color} rounded-lg p-4 mb-6`}>
-                <h3 className="text-xl font-bold text-white text-center">{category}</h3>
-              </div>
+          {categories.map((category, index) => {
+            const colorClass = getColor(category.color);
 
-              <div className="space-y-3">
-                {techs.map((tech, techIndex) => (
-                  <motion.div
-                    key={tech}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.1 + techIndex * 0.05 }}
-                    className="bg-gray-50 rounded-lg p-3 text-center font-medium text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
-                  >
-                    {tech}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+            return (
+              <motion.div
+                key={category.category}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                {/* Category Header */}
+                <div className={`bg-gradient-to-r ${colorClass} rounded-lg p-4 mb-6`}>
+                  <h3 className="text-xl font-bold text-white text-center">
+                    {category.category}
+                  </h3>
+                </div>
+
+                {/* Tech List */}
+                <div className="space-y-3">
+                  {category.techs.map((tech, techIndex) => (
+                    <motion.div
+                      key={tech}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{
+                        duration: 0.4,
+                        delay: index * 0.1 + techIndex * 0.05,
+                      }}
+                      className="bg-gray-50 rounded-lg p-3 text-center font-medium text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
+                    >
+                      {tech}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* CTA */}
