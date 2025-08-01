@@ -15,7 +15,17 @@ export function VisionSection() {
   const { title, description, visions, highlightCard } = data;
   const HighlightIcon = getDynamicIcon(highlightCard.icon);
 
-  return (
+  const gradientMap: Record<string, string> = {
+    "from-blue-500 to-purple-500": "from-blue-500 to-purple-500",
+    "from-purple-500 to-pink-500": "from-purple-500 to-pink-500",
+    "from-pink-500 to-red-500": "from-pink-500 to-red-500",
+  };
+
+  const getGradient = (color?: string) =>
+      gradientMap[color ?? ""] || "from-blue-500 to-purple-500";
+
+
+    return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -44,10 +54,10 @@ export function VisionSection() {
                 const Icon = getDynamicIcon(icon);
                 return (
                   <div key={number} className="flex items-start space-x-4">
-                    <div className={`bg-gradient-to-r ${color} rounded-lg p-3`}>
-                      <Icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
+                      <div className={`bg-gradient-to-r ${color} rounded-lg p-3`}>
+                          <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
                       <h3 className="text-2xl font-semibold mb-3 text-gray-900">{number}</h3>
                       <p className="text-gray-600 leading-relaxed">{text}</p>
                     </div>

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTechStackData } from '@/hooks/useTechStackData';
+import {cn} from "@/lib/utils";
 
 export function TechStackSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -15,10 +16,18 @@ export function TechStackSection() {
   const { title, description, categories, cta } = data;
 
   // Hàm lấy màu với fallback
-  const getColor = (color?: string) =>
-    color && color.includes('from-') ? color : 'from-blue-500 to-purple-500';
+    const gradientMap: Record<string, string> = {
+        "from-blue-500 to-cyan-500": "from-blue-500 to-cyan-500",
+        "from-green-500 to-teal-500": "from-green-500 to-teal-500",
+        "from-purple-500 to-pink-500": "from-purple-500 to-pink-500",
+        "from-orange-500 to-red-500": "from-orange-500 to-red-500",
+    };
 
-  return (
+    const getGradient = (color?: string) =>
+        gradientMap[color ?? ""] || "from-blue-500 to-purple-500";
+
+
+    return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -41,7 +50,7 @@ export function TechStackSection() {
         {/* Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {categories.map((category, index) => {
-            const colorClass = getColor(category.color);
+            const colorClass = getGradient(category.color);
 
             return (
               <motion.div
@@ -52,7 +61,7 @@ export function TechStackSection() {
                 className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 {/* Category Header */}
-                <div className={`bg-gradient-to-r ${colorClass} rounded-lg p-4 mb-6`}>
+                <div className={cn('bg-gradient-to-r',getGradient(category.color), 'rounded-lg p-4 mb-6')}>
                   <h3 className="text-xl font-bold text-white text-center">
                     {category.category}
                   </h3>

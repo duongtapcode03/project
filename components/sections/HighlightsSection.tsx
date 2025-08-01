@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useHighlightData } from "@/hooks/useHighlightData";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
+import {cn} from "@/lib/utils";
 
 export function HighlightsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -14,7 +15,18 @@ export function HighlightsSection() {
 
   const { title, description, highlights, cta } = data;
 
-  return (
+  const gradientMap: Record<string, string> = {
+        "from-yellow-400 to-orange-500": "from-yellow-400 to-orange-500",
+        "from-green-400 to-blue-500": "from-green-400 to-blue-500",
+        "from-purple-400 to-pink-500": "from-purple-400 to-pink-500",
+        "from-blue-400 to-purple-500": "from-blue-400 to-purple-500",
+    };
+
+    const getGradient = (color?: string) =>
+        gradientMap[color ?? ""] || "from-blue-500 to-purple-500";
+
+
+    return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -49,8 +61,10 @@ export function HighlightsSection() {
               >
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
                   <div
-                    className={`bg-gradient-to-r ${item.color} rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  >
+                      className={cn(
+                          "bg-gradient-to-r rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300",
+                          getGradient(item.color)
+                      )}                  >
                     <Icon className="h-8 w-8 text-white" />
                   </div>
 
