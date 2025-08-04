@@ -7,11 +7,11 @@ import { ExternalLink } from "lucide-react";
 import { useServiceData } from "@/hooks/useServiceData";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
 
-export function ServicesSection() {
+function ServicesSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useServiceData();
 
-  if (loading) return <div className="text-center py-20">Loading...</div>;
+  if (loading) return null;
   if (error || !data) return <div className="text-center py-20 text-red-500">Failed to load services.</div>;
 
   const { heading, services, additionalServices, cta } = data.servicesData;
@@ -140,3 +140,4 @@ export function ServicesSection() {
     </section>
   );
 }
+export default ServicesSection;

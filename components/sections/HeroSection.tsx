@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { ArrowRight, Play } from 'lucide-react';
 import { useHeroData } from '@/hooks/useHeroSectionData'; // ✅ Import hook vừa tạo
 
-export function HeroSection() {
+function HeroSection() {
   const { data, loading, error } = useHeroData();
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return null;
   if (error) return <p className="text-center text-red-500">{error}</p>;
   if (!data) return null;
 
@@ -93,3 +93,4 @@ export function HeroSection() {
     </section>
   );
 }
+export default HeroSection;

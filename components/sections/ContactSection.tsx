@@ -5,11 +5,11 @@ import { useInView } from "react-intersection-observer";
 import { useContactData } from "@/hooks/useContactData";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
 
-export function ContactSection() {
+function ContactSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useContactData();
 
-  if (loading) return <div className="text-center py-20">Loading...</div>;
+  if (loading) return null;
   if (error || !data)
     return <div className="text-center py-20 text-red-500">Failed to load contact data.</div>;
 
@@ -130,3 +130,5 @@ export function ContactSection() {
     </section>
   );
 }
+
+export default ContactSection;

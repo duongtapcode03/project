@@ -9,7 +9,7 @@ export function AboutDetail() {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const { data, loading, error } = useAboutData();
 
-    if (loading) return <div className="text-center py-10">Loading...</div>;
+    if (loading) return null;
     if (error || !data) return <div className="text-center text-red-500">{error}</div>;
 
     const { header, story, values, milestones, stats } = data;

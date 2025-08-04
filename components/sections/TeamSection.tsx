@@ -6,11 +6,11 @@ import Link from "next/link";
 import { Linkedin, Twitter, Github } from "lucide-react";
 import { useTeamData } from "@/hooks/useTeamData";
 
-export function TeamSection() {
+function TeamSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useTeamData();
 
-  if (loading) return <div className="text-center py-20">Loading team...</div>;
+  if (loading) return null;
   if (error || !data)
     return (
       <div className="text-center py-20 text-red-500">
@@ -153,3 +153,4 @@ export function TeamSection() {
     </section>
   );
 }
+export default TeamSection;

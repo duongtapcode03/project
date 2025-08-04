@@ -14,7 +14,7 @@ const iconMap: Record<string, React.ElementType> = {
 export function InsourcingDetail() {
     const { data, loading, error } = useServiceData();
 
-    if (loading) return <div className="text-center py-10">Loading...</div>;
+    if (loading) return null;
     if (error || !data) return <div className="text-center text-red-500">{error}</div>;
 
     const { heading, benefits, services, process, success, cta } =
@@ -89,7 +89,7 @@ export function InsourcingDetail() {
                                     </h3>
                                     <p className="text-gray-600 mb-6">{service.description}</p>
                                     <ul className="space-y-3">
-                                        {service.features.map((feature) => (
+                                        {service?.features?.map((feature) => (
                                             <li key={feature} className="flex items-start">
                                                 <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                                                 <span className="text-gray-600 text-sm">{feature}</span>

@@ -4,21 +4,34 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Linkedin, Twitter, Github, MapPin } from 'lucide-react';
 
-import { teamData } from '@/assets/data/team';
-
+import { useTeamData } from '@/hooks/useTeamData';
 
 export function TeamDetail() {
-  // Destructuring trực tiếp các trường cần thiết
+  const { data, loading, error } = useTeamData();
+
+  if (loading) {
+    return null
+  }
+
+  if (error || !data) {
+    return (
+      <div className="text-center py-10 text-red-500">
+        {error || 'Failed to load team data'}
+      </div>
+    );
+  }
+
   const {
     overview: { teamMembers, cta },
     header,
-  } = teamData;
+  } = data;
 
   const { headline, description, buttons } = cta;
 
   return (
     <div className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,9 +43,12 @@ export function TeamDetail() {
               {header.title}
             </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">{header.description}</p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            {header.description}
+          </p>
         </motion.div>
 
+        {/* Team Members */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => {
             const { id, name, role, image, bio, location, expertise = [], social } = member;
@@ -53,14 +69,14 @@ export function TeamDetail() {
                         alt={name}
                         className="w-full h-64 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
 
                     <h3 className="text-2xl font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
                       {name}
                     </h3>
                     <p className="text-blue-600 font-semibold mb-3">{role}</p>
-                    <p className="text-gray-600 text-sm mb-4 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed whitespace-pre-line">
                       {bio}
                     </p>
 
@@ -86,27 +102,33 @@ export function TeamDetail() {
                     </div>
 
                     <div className="flex space-x-3">
-                      <a
-                        href={social.linkedin}
-                        className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Linkedin className="h-4 w-4" />
-                      </a>
-                      <a
-                        href={social.twitter}
-                        className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Twitter className="h-4 w-4" />
-                      </a>
-                      <a
-                        href={social.github}
-                        className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Github className="h-4 w-4" />
-                      </a>
+                      {social.linkedin && (
+                        <a
+                          href={social.linkedin}
+                          className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Linkedin className="h-4 w-4" />
+                        </a>
+                      )}
+                      {social.twitter && (
+                        <a
+                          href={social.twitter}
+                          className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Twitter className="h-4 w-4" />
+                        </a>
+                      )}
+                      {social.github && (
+                        <a
+                          href={social.github}
+                          className="p-2 bg-gray-100 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Github className="h-4 w-4" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </Link>
@@ -115,6 +137,7 @@ export function TeamDetail() {
           })}
         </div>
 
+        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -124,11 +147,13 @@ export function TeamDetail() {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">{headline}</h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">{description}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={buttons[0].link}>
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
-                {buttons[0].label}
-              </button>
-            </Link>
+            {buttons[0] && (
+              <Link href={buttons[0].link}>
+                <button className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                  {buttons[0].label}
+                </button>
+              </Link>
+            )}
             <Link
               href="/contact"
               className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-200"

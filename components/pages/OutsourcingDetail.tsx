@@ -8,7 +8,7 @@ import { useServiceData } from "@/hooks/useServiceData";
 export function OutsourcingDetail() {
     const { data, loading, error } = useServiceData();
 
-    if (loading) return <div className="text-center py-10">Loading...</div>;
+    if (loading) return null;
     if (error || !data) return <div className="text-center text-red-500">{error}</div>;
 
     const { heading, benefits, models, process, cta } = data.outsourcingData;

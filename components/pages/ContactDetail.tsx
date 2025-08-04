@@ -2,18 +2,28 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { MapPin, Phone, Clock } from "lucide-react";
-import { contactData } from "@/assets/data/contact";
+import { getDynamicIcon } from "@/lib/useDynamicIcon";
+import { useContactData } from "@/hooks/useContactData";
 
 export function ContactDetail() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { data, loading, error } = useContactData();
+
+  if (loading) return null;
+  if (error || !data)
+    return (
+      <div className="text-center text-red-500">
+        {error || "Failed to load data"}
+      </div>
+    );
+
   const {
     headerContactDetail,
     contactMethods,
     offices,
     emergency,
     contactForm,
-  } = contactData;
+  } = data;
 
   return (
     <div className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
@@ -43,28 +53,31 @@ export function ContactDetail() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
-          {contactMethods.map((m, i) => (
-            <motion.div
-              key={m.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center"
-            >
-              <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-full p-3 w-fit mx-auto mb-4">
-                <m.icon className="h-6 w-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {m.title}
-              </h3>
-              <p className="text-blue-600 font-medium">{m.primary}</p>
-              <p className="text-gray-500 text-sm mb-3">{m.secondary}</p>
-              <p className="text-gray-600 text-sm mb-4">{m.description}</p>
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105">
-                {m.action}
-              </button>
-            </motion.div>
-          ))}
+          {contactMethods.map((m, i) => {
+            const Icon = getDynamicIcon(m.icon);
+            return (
+              <motion.div
+                key={m.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center"
+              >
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-full p-3 w-fit mx-auto mb-4">
+                  <Icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {m.title}
+                </h3>
+                <p className="text-blue-600 font-medium">{m.primary}</p>
+                <p className="text-gray-500 text-sm mb-3">{m.secondary}</p>
+                <p className="text-gray-600 text-sm mb-4">{m.description}</p>
+                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                  {m.action}
+                </button>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -80,7 +93,7 @@ export function ContactDetail() {
             </h2>
 
             <form className="space-y-6">
-              {/* First 2 fields in grid */}
+              {/* First 2 fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {contactForm.fields.slice(0, 2).map((field) => (
                   <div key={field.name}>
@@ -163,7 +176,6 @@ export function ContactDetail() {
                 />
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
@@ -182,33 +194,38 @@ export function ContactDetail() {
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Offices</h2>
 
-            {offices.map((o, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {o.city}
-                </h3>
-                <div className="space-y-2 text-gray-600">
-                  <div className="flex items-start">
-                    <MapPin className="h-4 w-4 mr-2 mt-1 text-blue-500" />
-                    <span className="whitespace-pre-line">{o.address}</span>
+            {offices.map((o, i) => {
+              const MapIcon = getDynamicIcon("MapPin");
+              const PhoneIcon = getDynamicIcon("Phone");
+              const ClockIcon = getDynamicIcon("Clock");
+
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
+                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{o.city}</h3>
+                  <div className="space-y-2 text-gray-600">
+                    <div className="flex items-start">
+                      <MapIcon className="h-4 w-4 mr-2 mt-1 text-blue-500" />
+                      <span className="whitespace-pre-line">{o.address}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <PhoneIcon className="h-4 w-4 mr-2 text-blue-500" />
+                      <span>{o.phone}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <ClockIcon className="h-4 w-4 mr-2 text-blue-500" />
+                      <span>{o.hours}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center">
-                    <Phone className="h-4 w-4 mr-2 text-blue-500" />
-                    <span>{o.phone}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-2 text-blue-500" />
-                    <span>{o.hours}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
+
 
             {/* Emergency */}
             <motion.div

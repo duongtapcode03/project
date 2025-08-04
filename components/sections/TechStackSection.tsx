@@ -5,12 +5,12 @@ import { useInView } from 'react-intersection-observer';
 import { useTechStackData } from '@/hooks/useTechStackData';
 import {cn} from "@/lib/utils";
 
-export function TechStackSection() {
+function TechStackSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useTechStackData();
 
   // Nếu đang loading hoặc có lỗi
-  if (loading) return <p className="text-center py-10">Loading...</p>;
+  if (loading) return null;
   if (error || !data) return <p className="text-center py-10 text-red-500">Failed to load data.</p>;
 
   const { title, description, categories, cta } = data;
@@ -111,3 +111,4 @@ export function TechStackSection() {
     </section>
   );
 }
+export default TechStackSection;

@@ -6,11 +6,11 @@ import { useHighlightData } from "@/hooks/useHighlightData";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
 import {cn} from "@/lib/utils";
 
-export function HighlightsSection() {
+function HighlightsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useHighlightData();
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return null;
   if (error || !data) return <p>Error loading data</p>;
 
   const { title, description, highlights, cta } = data;
@@ -115,3 +115,4 @@ export function HighlightsSection() {
     </section>
   );
 }
+export default HighlightsSection;

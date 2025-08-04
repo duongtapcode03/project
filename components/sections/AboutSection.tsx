@@ -6,11 +6,11 @@ import { useAboutData } from "@/hooks/useAboutData";
 import * as Icons from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
-export function AboutSection() {
+function AboutSection() {
   const { data, loading, error } = useAboutData();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  if (loading) return <p className="text-center py-10">Loading...</p>;
+  if (loading) return null;
   if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
   if (!data) return null;
 
@@ -80,3 +80,5 @@ export function AboutSection() {
     </section>
   );
 }
+
+export default AboutSection;
