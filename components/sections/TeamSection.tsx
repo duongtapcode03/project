@@ -73,8 +73,12 @@ function TeamSection() {
                     {member.name}
                   </h3>
                   <p className="text-blue-600 font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                    {member.bio}
+                  <p className="text-gray-600 text-sm mb-4 leading-relaxed h-[116px] line-clamp-5">
+                    {member?.bio?.slice().sort((a, b) => a.length - b.length).slice(0, 3).map(bioItem=> (
+                        <>      
+                          <span>• {bioItem}</span><br />
+                        </>
+                    ))}
                   </p>
 
                   {/* Social Links */}

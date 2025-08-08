@@ -5,7 +5,7 @@ export type TeamMember = {
   name: string;
   role: string;
   image: string;
-  bio: string;
+  bio: string[];
   location: string;
   joinDate: string;
   email: string;
