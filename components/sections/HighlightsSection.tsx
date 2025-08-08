@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useHighlightData } from "@/hooks/useHighlightData";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 function HighlightsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -16,17 +16,20 @@ function HighlightsSection() {
   const { title, description, highlights, cta } = data;
 
   const gradientMap: Record<string, string> = {
-        "from-yellow-400 to-orange-500": "from-yellow-400 to-orange-500",
-        "from-green-400 to-blue-500": "from-green-400 to-blue-500",
-        "from-purple-400 to-pink-500": "from-purple-400 to-pink-500",
-        "from-blue-400 to-purple-500": "from-blue-400 to-purple-500",
-    };
+    "from-yellow-400 to-orange-500": "from-yellow-400 to-orange-500",
+    "from-green-400 to-blue-500": "from-green-400 to-blue-500",
+    "from-purple-400 to-pink-500": "from-purple-400 to-pink-500",
+    "from-blue-400 to-purple-500": "from-blue-400 to-purple-500",
+    "Schedule Consultation":
+      "bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 hover:shadow-lg transition-all duration-200 transform hover:scale-105",
+    "View Case Studies":
+      "border-2 border-blue-600 text-blue-600 px-8 py-3 hover:bg-blue-600 hover:text-white transition-all duration-200",
+  };
 
-    const getGradient = (color?: string) =>
-        gradientMap[color ?? ""] || "from-blue-500 to-purple-500";
+  const getGradient = (color?: string) =>
+    gradientMap[color ?? ""] || "from-blue-500 to-purple-500";
 
-
-    return (
+  return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -59,12 +62,13 @@ function HighlightsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="h-[345px] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
                   <div
-                      className={cn(
-                          "bg-gradient-to-r rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300",
-                          getGradient(item.color)
-                      )}                  >
+                    className={cn(
+                      "bg-gradient-to-r rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300",
+                      getGradient(item.color)
+                    )}
+                  >
                     <Icon className="h-8 w-8 text-white" />
                   </div>
 
@@ -77,7 +81,9 @@ function HighlightsSection() {
                   <h3 className="text-xl font-semibold mb-4 text-gray-900">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               </motion.div>
             );
@@ -103,7 +109,10 @@ function HighlightsSection() {
                 <a
                   key={btn.text}
                   href={btn.link}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+                  className={cn(
+                    "rounded-full font-semibold",
+                    getGradient(btn.text)
+                  )}
                 >
                   {btn.text}
                 </a>

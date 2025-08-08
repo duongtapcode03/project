@@ -4,10 +4,32 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
 import { useContactData } from "@/hooks/useContactData";
+import { useState } from "react";
+import { log } from "node:console";
 
 export function ContactDetail() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useContactData();
+
+  type FormData = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    company: string;
+    service: string;
+    message: string;
+  };
+
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    service: "",
+    message: "",
+  });
 
   if (loading) return null;
   if (error || !data)
@@ -24,6 +46,28 @@ export function ContactDetail() {
     emergency,
     contactForm,
   } = data;
+  console.log("formData: ", formData);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const subject = `Liên hệ từ ${formData.firstName?.trim()} ${formData.lastName?.trim()}`;
+    const body = `
+    Họ và tên: ${formData.firstName?.trim()} ${formData.lastName?.trim()}
+    Email: ${formData.email?.trim()}
+    Số điện thoại: ${formData.phone?.trim()}
+    Công ty: ${formData.company?.trim()}
+    Dịch vụ: ${formData.service?.trim()}
+
+    Nội dung:
+    ${formData.message?.trim()}
+  `;
+
+    const mailtoLink = `mailto:${
+      contactForm?.mailto || ""
+    }?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+  };
 
   return (
     <div className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
@@ -72,7 +116,8 @@ export function ContactDetail() {
                 <p className="text-blue-600 font-medium">{m.primary}</p>
                 <p className="text-gray-500 text-sm mb-3">{m.secondary}</p>
                 <p className="text-gray-600 text-sm mb-4">{m.description}</p>
-                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                {/* // hover:scale-105 */}
+                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200 transform cursor-default">
                   {m.action}
                 </button>
               </motion.div>
@@ -92,7 +137,7 @@ export function ContactDetail() {
               {contactForm.title}
             </h2>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* First 2 fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {contactForm.fields.slice(0, 2).map((field) => (
@@ -101,6 +146,12 @@ export function ContactDetail() {
                       {field.label}
                     </label>
                     <input
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [field.name]: e.target.value,
+                        })
+                      }
                       type={field.type}
                       required={field.required}
                       placeholder={field.placeholder}
@@ -118,7 +169,15 @@ export function ContactDetail() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         {field.label}
                       </label>
-                      <select className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500">
+                      <select
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [field.name]: e.target.value,
+                          })
+                        }
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500"
+                      >
                         {field.options?.map((opt) => (
                           <option key={opt.value} value={opt.value}>
                             {opt.label}
@@ -136,6 +195,12 @@ export function ContactDetail() {
                         {field.label}
                       </label>
                       <textarea
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            [field.name]: e.target.value,
+                          })
+                        }
                         rows={5}
                         required={field.required}
                         placeholder={field.placeholder}
@@ -151,6 +216,12 @@ export function ContactDetail() {
                       {field.label}
                     </label>
                     <input
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [field.name]: e.target.value,
+                        })
+                      }
                       type={field.type}
                       required={field.required}
                       placeholder={field.placeholder}
@@ -165,6 +236,7 @@ export function ContactDetail() {
                 <input
                   type="checkbox"
                   id={contactForm.checkbox.id}
+                  required={contactForm?.checkbox?.required}
                   className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
                 <label
@@ -192,7 +264,9 @@ export function ContactDetail() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Offices</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              Our Offices
+            </h2>
 
             {offices.map((o, i) => {
               const MapIcon = getDynamicIcon("MapPin");
@@ -207,7 +281,9 @@ export function ContactDetail() {
                   transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
                   className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{o.city}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {o.city}
+                  </h3>
                   <div className="space-y-2 text-gray-600">
                     <div className="flex items-start">
                       <MapIcon className="h-4 w-4 mr-2 mt-1 text-blue-500" />
@@ -226,7 +302,6 @@ export function ContactDetail() {
               );
             })}
 
-
             {/* Emergency */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -236,7 +311,8 @@ export function ContactDetail() {
             >
               <h3 className="text-xl font-bold mb-3">{emergency.title}</h3>
               <p className="mb-4 opacity-90">{emergency.description}</p>
-              <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+              {/* hover:scale-105 */}
+              <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform cursor-default">
                 {emergency.button}
               </button>
             </motion.div>

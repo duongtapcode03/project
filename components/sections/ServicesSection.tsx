@@ -12,14 +12,19 @@ function ServicesSection() {
   const { data, loading, error } = useServiceData();
 
   if (loading) return null;
-  if (error || !data) return <div className="text-center py-20 text-red-500">Failed to load services.</div>;
+  if (error || !data)
+    return (
+      <div className="text-center py-20 text-red-500">
+        Failed to load services.
+      </div>
+    );
 
   const { heading, services, additionalServices, cta } = data.servicesData;
+  console.log("service active: ", services[0]?.active);
 
   return (
     <section id="services" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Heading */}
         <motion.div
           ref={ref}
@@ -33,7 +38,9 @@ function ServicesSection() {
               {heading.title}
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">{heading.subtitle}</p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            {heading.subtitle}
+          </p>
         </motion.div>
 
         {/* Main Services */}
@@ -46,32 +53,45 @@ function ServicesSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+                className="flex flex-col group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
               >
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Icon className="h-8 w-8 text-white" />
                 </div>
 
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {service.description}
+                </p>
 
                 <ul className="space-y-2 mb-8">
                   {service.features?.map((feature) => (
-                    <li key={feature} className="flex items-center text-gray-600">
+                    <li
+                      key={feature}
+                      className="flex items-center text-gray-600"
+                    >
                       <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                       {feature}
                     </li>
                   ))}
                 </ul>
 
-                {service.link && (
-                  <Link
-                    href={service.link}
-                    className="inline-flex items-center space-x-2 text-blue-600 font-semibold hover:text-purple-600 transition-colors duration-200 group-hover:translate-x-1 transition-transform"
-                  >
-                    <span>Learn More</span>
-                    <ExternalLink className="h-4 w-4" />
-                  </Link>
+                {service.active === true ? (
+                  service.link && (
+                    <Link
+                      href={service.link}
+                      className="inline-flex items-center space-x-2 mt-auto text-blue-600 font-semibold hover:text-purple-600 transition-colors duration-200 group-hover:translate-x-1 transition-transform"
+                    >
+                      <span>Learn More</span>
+                      <ExternalLink className="h-4 w-4" />
+                    </Link>
+                  )
+                ) : (
+                  <button className=" inline-flex items-center space-x-2 mt-auto text-blue-600 font-semibold group-hover:translate-x-1 cursor-text">
+                    <span>Coming Soon...</span>
+                  </button>
                 )}
               </motion.div>
             );
@@ -84,7 +104,9 @@ function ServicesSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">Additional Expertise</h3>
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900">
+            Additional Expertise
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {additionalServices.map((service) => {
               const Icon = getDynamicIcon(service.icon);
@@ -96,7 +118,9 @@ function ServicesSection() {
                   <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg p-3 w-fit mx-auto mb-4">
                     <Icon className="h-6 w-6 text-white" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">{service.title}</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">
+                    {service.title}
+                  </h4>
                   <p className="text-gray-600 text-sm">{service.description}</p>
                 </div>
               );
@@ -112,7 +136,9 @@ function ServicesSection() {
           className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center"
         >
           <h3 className="text-3xl md:text-4xl font-bold mb-6">{cta.title}</h3>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">{cta.subtitle}</p>
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            {cta.subtitle}
+          </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {cta.buttons.map((btn) =>

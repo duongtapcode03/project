@@ -4,21 +4,55 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useContactData } from "@/hooks/useContactData";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
+import { useState } from "react";
 
 function ContactSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useContactData();
+  type FormData = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    message: string;
+  };
 
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
   if (loading) return null;
   if (error || !data)
-    return <div className="text-center py-20 text-red-500">Failed to load contact data.</div>;
+    return (
+      <div className="text-center py-20 text-red-500">
+        Failed to load contact data.
+      </div>
+    );
 
   const {
     headerContactSecTion,
-    form: { fields, submitButton },
+    form: { fields, submitButton, mailto },
     contacts,
     support,
   } = data;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const subject = `Liên hệ từ ${formData.firstName?.trim()} ${formData.lastName?.trim()}`;
+    const body = `
+    Họ và tên: ${formData.firstName?.trim()} ${formData.lastName?.trim()}
+    Email: ${formData.email?.trim()}
+    Nội dung:
+    ${formData.message?.trim()}
+  `;
+
+    const mailtoLink = `mailto:${mailto || ""}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+  };
 
   return (
     <section id="contact" className="py-20 bg-white">
@@ -49,8 +83,10 @@ function ContactSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8"
           >
-            <h3 className="text-2xl font-bold mb-6 text-gray-900">Send us a message</h3>
-            <form className="space-y-6">
+            <h3 className="text-2xl font-bold mb-6 text-gray-900">
+              Send us a message
+            </h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
               {fields.map(({ name, placeholder, type }) => (
                 <div key={name}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -58,12 +94,26 @@ function ContactSection() {
                   </label>
                   {type === "textarea" ? (
                     <textarea
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [name]: e.target.value,
+                        })
+                      }
+                      required
                       rows={4}
                       placeholder={placeholder}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
                     ></textarea>
                   ) : (
                     <input
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [name]: e.target.value,
+                        })
+                      }
+                      required
                       type={type || "text"}
                       placeholder={placeholder}
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
@@ -102,7 +152,9 @@ function ContactSection() {
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{title}</h4>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-1">
+                        {title}
+                      </h4>
                       <p className="text-blue-600 font-medium mb-1">{info}</p>
                       <p className="text-gray-600 text-sm">{description}</p>
                     </div>

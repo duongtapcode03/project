@@ -12,6 +12,7 @@ export type ServiceItem = {
   description: string;
   features?: string[];
   link?: string;
+  active?: boolean;
 };
 
 export type ServiceDetailItem = {
@@ -22,6 +23,7 @@ export type ServiceDetailItem = {
   pricing: string;
   timeline: string;
   link: string;
+  active?:boolean;
 };
 
 export type OutsourcingModel = {

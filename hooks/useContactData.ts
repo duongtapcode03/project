@@ -6,6 +6,7 @@ export interface ContactData {
   form: {
     fields: { name: string; placeholder: string; type?: string }[];
     submitButton: { text: string };
+    mailto?: string;
   };
   contacts: {
     icon: string;
@@ -44,8 +45,9 @@ export interface ContactData {
       grid?: string;
       options?: { value: string; label: string }[];
     }[];
-    checkbox: { id: string; label: string };
+    checkbox: { id: string; label: string; required: boolean };
     submitButton: string;
+    mailto: string;
   };
 }
 

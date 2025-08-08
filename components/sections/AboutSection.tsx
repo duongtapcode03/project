@@ -40,7 +40,9 @@ function AboutSection() {
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map(({ icon, title, description }, index) => {
-            const IconComponent = Icons[icon as keyof typeof Icons] as LucideIcon;
+            const IconComponent = Icons[
+              icon as keyof typeof Icons
+            ] as LucideIcon;
 
             return (
               <motion.div
@@ -51,9 +53,13 @@ function AboutSection() {
                 className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-3 w-fit mb-6">
-                  {IconComponent && <IconComponent className="h-8 w-8 text-white" />}
+                  {IconComponent && (
+                    <IconComponent className="h-8 w-8 text-white" />
+                  )}
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">{title}</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  {title}
+                </h3>
                 <p className="text-gray-600 leading-relaxed">{description}</p>
               </motion.div>
             );
@@ -71,7 +77,7 @@ function AboutSection() {
           <p className="text-xl mb-8 opacity-90">{cta.description}</p>
           <a
             href={cta.button.link}
-            className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
           >
             {cta.button.text}
           </a>
