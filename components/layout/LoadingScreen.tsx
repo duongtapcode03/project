@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Terminal, Zap, Database, Cpu, Wifi } from 'lucide-react';
-import { useApiLoading } from '@/hooks/useApiLoading';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Code, Terminal, Zap, Database, Cpu, Wifi } from "lucide-react";
+import { useApiLoading } from "@/hooks/useApiLoading";
 
 interface LoadingScreenProps {
   onComplete?: () => void;
@@ -9,31 +9,53 @@ interface LoadingScreenProps {
   minLoadingTime?: number;
 }
 
-export function LoadingScreen({ 
-  onComplete, 
-  useRealApi = false, 
-  minLoadingTime = 3000 
+export function LoadingScreen({
+  onComplete,
+  useRealApi = false,
+  minLoadingTime = 3000,
 }: LoadingScreenProps) {
   const { isLoading, progress, currentTask, error } = useApiLoading({
     minLoadingTime,
-    simulateApiCalls: !useRealApi
+    simulateApiCalls: !useRealApi,
   });
 
   const loadingPhases = [
-    { icon: Terminal, keywords: ['Initializing', 'setup'], color: 'text-blue-500' },
-    { icon: Database, keywords: ['database', 'Connecting'], color: 'text-purple-500' },
-    { icon: Cpu, keywords: ['Processing', 'data', 'user'], color: 'text-teal-500' },
-    { icon: Wifi, keywords: ['Establishing', 'configurations'], color: 'text-blue-600' },
-    { icon: Code, keywords: ['Loading', 'dashboard', 'interface'], color: 'text-purple-600' }
+    {
+      icon: Terminal,
+      keywords: ["Initializing", "setup"],
+      color: "text-blue-500",
+    },
+    {
+      icon: Database,
+      keywords: ["database", "Connecting"],
+      color: "text-purple-500",
+    },
+    {
+      icon: Cpu,
+      keywords: ["Processing", "data", "user"],
+      color: "text-teal-500",
+    },
+    {
+      icon: Wifi,
+      keywords: ["Establishing", "configurations"],
+      color: "text-blue-600",
+    },
+    {
+      icon: Code,
+      keywords: ["Loading", "dashboard", "interface"],
+      color: "text-purple-600",
+    },
   ];
 
   // Determine current phase based on task content
   const getCurrentPhase = () => {
     const taskLower = currentTask.toLowerCase();
     for (let i = 0; i < loadingPhases.length; i++) {
-      if (loadingPhases[i].keywords.some(keyword => 
-        taskLower.includes(keyword.toLowerCase())
-      )) {
+      if (
+        loadingPhases[i].keywords.some((keyword) =>
+          taskLower.includes(keyword.toLowerCase())
+        )
+      ) {
         return i;
       }
     }
@@ -51,8 +73,12 @@ export function LoadingScreen({
     }
   }, [isLoading, progress, onComplete]);
 
-  const CurrentIcon = loadingPhases[Math.min(currentPhase, loadingPhases.length - 1)]?.icon || Code;
-  const currentColor = loadingPhases[Math.min(currentPhase, loadingPhases.length - 1)]?.color || 'text-blue-500';
+  const CurrentIcon =
+    loadingPhases[Math.min(currentPhase, loadingPhases.length - 1)]?.icon ||
+    Code;
+  const currentColor =
+    loadingPhases[Math.min(currentPhase, loadingPhases.length - 1)]?.color ||
+    "text-blue-500";
 
   // Show error state if there's an error
   if (error) {
@@ -62,9 +88,11 @@ export function LoadingScreen({
           <div className="inline-flex items-center justify-center w-20 h-20 bg-red-500 rounded-2xl shadow-lg mb-4">
             <Terminal className="w-10 h-10 text-white" />
           </div>
-          <h2 className="text-2xl font-bold text-red-600 mb-4">Loading Failed</h2>
+          <h2 className="text-2xl font-bold text-red-600 mb-4">
+            Loading Failed
+          </h2>
           <p className="text-gray-600 mb-6">{error}</p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors"
           >
@@ -96,7 +124,7 @@ export function LoadingScreen({
             <Zap className="w-10 h-10 text-white" />
           </div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
-            TechCorp
+            Flexinet
           </h1>
         </motion.div>
 
@@ -116,7 +144,7 @@ export function LoadingScreen({
             >
               <CurrentIcon className={`w-8 h-8 ${currentColor}`} />
             </motion.div>
-            
+
             {/* Pulsing Ring */}
             <motion.div
               animate={{ scale: [1, 1.2, 1], opacity: [0.7, 0.3, 0.7] }}
@@ -174,16 +202,16 @@ export function LoadingScreen({
               animate={{
                 x: [0, Math.random() * 100 - 50],
                 y: [0, Math.random() * 100 - 50],
-                opacity: [0.3, 0.7, 0.3]
+                opacity: [0.3, 0.7, 0.3],
               }}
               transition={{
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 2
+                delay: Math.random() * 2,
               }}
               style={{
                 left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`
+                top: `${Math.random() * 100}%`,
               }}
             />
           ))}
