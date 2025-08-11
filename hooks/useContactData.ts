@@ -21,19 +21,26 @@ export interface ContactData {
     secondary: string;
     description: string;
     action: string;
+    href: string;
   }[];
   offices: {
     city: string;
     address: string;
     phone: string;
     hours: string;
+    status?: number;
   }[];
   support: {
     title: string;
     description: string;
     button: { text: string; link: string };
   };
-  emergency: { title: string; description: string; button: string };
+  emergency: {
+    title: string;
+    description: string;
+    button: string;
+    phone: string;
+  };
   contactForm: {
     title: string;
     fields: {

@@ -62,7 +62,7 @@ function HighlightsSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="h-[345px] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="h-[372px] bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
                   <div
                     className={cn(
                       "bg-gradient-to-r rounded-xl p-3 w-fit mb-6 group-hover:scale-110 transition-transform duration-300",

@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Menu, X, Code2 } from 'lucide-react';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Menu, X, Code2 } from "lucide-react";
+import Image from "next/image";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,16 +14,17 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/team', label: 'Team' },
-    { href: '/contact', label: 'Contact' },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/team", label: "Team" },
+    { href: "/contact", label: "Contact" },
+    { href: "/careers", label: "Careers" },
   ];
 
   return (
@@ -30,23 +32,21 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1 rounded-lg">
-              <img
-                  src="/images/0a379107-9b83-4a8d-a19b-5139bedca43a.jpeg"
-                  alt="Logo"
-                  width={60}
-                  height={60}
-                  className="object-contain rounded-md"
-                  // className="object-contain"
-                  // className="h-6 w-6 object-contain" // Điều chỉnh kích thước và kiểu hiển thị
+              <Image
+                src="/images/0a379107-9b83-4a8d-a19b-5139bedca43a.jpeg"
+                alt="Logo"
+                width={60}
+                height={60}
+                className="object-contain rounded-md"
+                // className="object-contain"
+                // className="h-6 w-6 object-contain" // Điều chỉnh kích thước và kiểu hiển thị
               />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -78,7 +78,11 @@ export function Navbar() {
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
 
