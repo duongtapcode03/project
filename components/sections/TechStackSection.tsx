@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useTechStackData } from "@/hooks/useTechStackData";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 function TechStackSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { data, loading, error } = useTechStackData();
 
-  // Nếu đang loading hoặc có lỗi
+  // Neu dang loading, tra ve null
+  // Neu khong co du lieu, tra ve thong bao loi
   if (loading) return null;
   if (error || !data)
     return (
@@ -112,12 +114,12 @@ function TechStackSection() {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               {cta.description}
             </p>
-            <a
+            <Link
               href={cta.button.link}
               className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
             >
               {cta.button.text}
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -184,7 +184,7 @@ export const contactData = {
     checkbox: {
       id: "privacy",
       label:
-        'I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>',
+        'I agree to the <Link href="#">Privacy Policy</Link> and <Link href="#">Terms of Service</Link>',
     },
     submitButton: "Send Message",
   },
