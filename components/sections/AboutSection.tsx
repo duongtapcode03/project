@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAboutData } from "@/hooks/useAboutData";
 import * as Icons from "lucide-react";
-import { LucideIcon } from "lucide-react";
+import { DivideIcon as LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 function AboutSection() {
