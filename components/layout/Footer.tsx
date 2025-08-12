@@ -19,8 +19,8 @@ export default async function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Company Info */}
                     <div className="col-span-1 md:col-span-2">
-                        <div className="flex items-center space-x-2 mb-4">
-                            <div className="bg-white p-1 rounded-lg">
+                        <div className="flex items-center space-x-2 mb-4 magnetic">
+                            <div className="bg-white p-1 rounded-lg floating-animation">
                                 <Image
                                     src={company.logo}
                                     alt={company.name}
@@ -29,9 +29,9 @@ export default async function Footer() {
                                     className="object-contain rounded-md"
                                 />
                             </div>
-                            <span className="text-xl font-bold">{company.name}</span>
+                            <span className="text-xl font-bold text-3d">{company.name}</span>
                         </div>
-                        <p className="text-gray-300 mb-6 max-w-md">{company.description}</p>
+                        <p className="text-gray-300 mb-6 max-w-md drop-shadow-md">{company.description}</p>
 
                         <div className="flex space-x-4">
                             {company.socialLinks.map(({ icon, href }: any) => {
@@ -40,7 +40,7 @@ export default async function Footer() {
                                     <a
                                         key={icon}
                                         href={href}
-                                        className="text-gray-300 hover:text-blue-400 transition-colors"
+                                        className="text-gray-300 hover:text-blue-400 transition-all duration-300 magnetic hover:scale-125"
                                     >
                                         <Icon className="h-5 w-5" />
                                     </a>
@@ -51,13 +51,13 @@ export default async function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+                        <h3 className="text-lg font-semibold mb-4 text-3d">Quick Links</h3>
                         <ul className="space-y-2">
                             {quickLinks.map(({ label, href }: any) => (
                                 <li key={label}>
                                     <Link
                                         href={href}
-                                        className="text-gray-300 hover:text-white transition-colors"
+                                        className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 inline-block"
                                     >
                                         {label}
                                     </Link>
@@ -68,12 +68,12 @@ export default async function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+                        <h3 className="text-lg font-semibold mb-4 text-3d">Contact Info</h3>
                         <div className="space-y-3">
                             {contactInfo.map(({ icon, text }: any) => {
                                 const Icon = getDynamicIcon(icon);
                                 return (
-                                    <div key={text} className="flex items-center space-x-2">
+                                    <div key={text} className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
                                         <Icon className="h-4 w-4 text-blue-400" />
                                         <span className="text-gray-300">{text}</span>
                                     </div>
@@ -83,15 +83,15 @@ export default async function Footer() {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-800 pt-8 mt-8">
+                <div className="border-t border-gray-800 pt-8 mt-8 glass-morphism rounded-lg p-4">
                     <div className="flex flex-col md:flex-row justify-between items-center">
-                        <p className="text-gray-300 text-sm">{copyright}</p>
+                        <p className="text-gray-300 text-sm drop-shadow-md">{copyright}</p>
                         <div className="flex space-x-6 mt-4 md:mt-0">
                             {policies.map(({ label, href }: any) => (
                                 <Link
                                     key={label}
                                     href={href}
-                                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                                    className="text-gray-300 hover:text-white text-sm transition-all duration-300 hover:scale-105"
                                 >
                                     {label}
                                 </Link>
