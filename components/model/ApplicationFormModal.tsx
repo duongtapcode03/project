@@ -1,15 +1,23 @@
 "use client";
 import { Send } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 type Props = {
   applicationData: any;
   setApplicationData: (data: any) => void;
   setShowApplicationForm: (show: boolean) => void;
+  applicationModal: any;
 };
 
 const ApplicationFormModal = (props: Props) => {
-  const { applicationData, setShowApplicationForm, setApplicationData } = props;
+  const {
+    applicationData,
+    setShowApplicationForm,
+    setApplicationData,
+    applicationModal,
+  } = props;
+  const { header, steps, successMessage, buttons } = applicationModal;
   const [formStep, setFormStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -107,7 +115,7 @@ const ApplicationFormModal = (props: Props) => {
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-2xl font-bold">Apply for Position</h3>
+              <h3 className="text-2xl font-bold">{header.title}</h3>
               <p className="text-blue-100 mt-1">{applicationData.position}</p>
             </div>
             <button
@@ -187,15 +195,10 @@ const ApplicationFormModal = (props: Props) => {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Application Submitted!
+                {successMessage.title}
               </h3>
-              <p className="text-gray-600 mb-4">
-                Thank you for your interest in joining our team. We'll review
-                your application and get back to you within 2-3 business days.
-              </p>
-              <p className="text-sm text-gray-500">
-                This window will close automatically...
-              </p>
+              <p className="text-gray-600 mb-4">{successMessage.body}</p>
+              <p className="text-sm text-gray-500">{successMessage.status}</p>
             </div>
           ) : (
             <form onSubmit={handleApplicationSubmit} className="p-6">
@@ -204,7 +207,7 @@ const ApplicationFormModal = (props: Props) => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                      Personal Information
+                      {steps[0].title}
                     </h4>
                   </div>
 
@@ -214,7 +217,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="name"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Full Name *
+                        {steps[0]?.fields?.name}
                       </label>
                       <input
                         type="text"
@@ -232,7 +235,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="email"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Email Address *
+                        {steps[0]?.fields?.email}
                       </label>
                       <input
                         type="email"
@@ -253,7 +256,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="phone"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Phone Number *
+                        {steps[0]?.fields?.phone}
                       </label>
                       <input
                         type="tel"
@@ -271,7 +274,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="workLocation"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Preferred Work Location
+                        {steps[0]?.fields?.workLocation?.label}
                       </label>
                       <select
                         id="workLocation"
@@ -280,14 +283,13 @@ const ApplicationFormModal = (props: Props) => {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
                       >
-                        <option value="">Select preference</option>
-                        <option value="remote">Remote</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="onsite-sf">
-                          On-site (San Francisco)
-                        </option>
-                        <option value="onsite-ny">On-site (New York)</option>
-                        <option value="onsite-london">On-site (London)</option>
+                        {steps[0]?.fields?.workLocation?.options?.map(
+                          (option: any) => (
+                            <option key={option?.value} value={option?.value}>
+                              {option?.label}
+                            </option>
+                          )
+                        )}
                       </select>
                     </div>
                   </div>
@@ -298,7 +300,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="linkedin"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        LinkedIn Profile
+                        {steps[0]?.fields?.linkedin}
                       </label>
                       <input
                         type="url"
@@ -315,7 +317,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="github"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        GitHub Profile
+                        {steps[0]?.fields?.github}
                       </label>
                       <input
                         type="url"
@@ -336,7 +338,7 @@ const ApplicationFormModal = (props: Props) => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                      Experience & Motivation
+                      {steps[1].title}
                     </h4>
                   </div>
 
@@ -346,7 +348,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="experience"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Years of Experience *
+                        {steps[1]?.fields?.experience?.label}
                       </label>
                       <select
                         id="experience"
@@ -356,12 +358,13 @@ const ApplicationFormModal = (props: Props) => {
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
                       >
-                        <option value="">Select experience</option>
-                        <option value="0-1">0-1 years</option>
-                        <option value="1-3">1-3 years</option>
-                        <option value="3-5">3-5 years</option>
-                        <option value="5-10">5-10 years</option>
-                        <option value="10+">10+ years</option>
+                        {steps[1]?.fields?.experience?.options?.map(
+                          (option: any) => (
+                            <option key={option?.value} value={option?.value}>
+                              {option?.label}
+                            </option>
+                          )
+                        )}
                       </select>
                     </div>
                     <div>
@@ -369,7 +372,8 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="expectedSalary"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Expected Salary Range
+                        {steps[1]?.fields?.expectedSalary?.label ||
+                          "Expected Salary"}
                       </label>
                       <select
                         id="expectedSalary"
@@ -378,13 +382,13 @@ const ApplicationFormModal = (props: Props) => {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
                       >
-                        <option value="">Select range</option>
-                        <option value="60k-80k">$60,000 - $80,000</option>
-                        <option value="80k-100k">$80,000 - $100,000</option>
-                        <option value="100k-120k">$100,000 - $120,000</option>
-                        <option value="120k-150k">$120,000 - $150,000</option>
-                        <option value="150k-180k">$150,000 - $180,000</option>
-                        <option value="180k+">$180,000+</option>
+                        {steps[1]?.fields?.expectedSalary?.options?.map(
+                          (option: any) => (
+                            <option key={option?.value} value={option?.value}>
+                              {option?.label}
+                            </option>
+                          )
+                        )}
                       </select>
                     </div>
                   </div>
@@ -395,7 +399,8 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="availableStart"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Available Start Date
+                        {steps[1]?.fields?.availableStart ||
+                          "Available Start Date"}
                       </label>
                       <input
                         type="date"
@@ -411,7 +416,8 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="portfolio"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Portfolio Website
+                        {steps[1]?.fields?.portfolio ||
+                          "Portfolio Website (Optional)"}
                       </label>
                       <input
                         type="url"
@@ -430,7 +436,7 @@ const ApplicationFormModal = (props: Props) => {
                       htmlFor="coverLetter"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Cover Letter *
+                      {steps[1]?.fields?.coverLetter || "Cover Letter *"}
                     </label>
                     <textarea
                       id="coverLetter"
@@ -451,7 +457,7 @@ const ApplicationFormModal = (props: Props) => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                      Documents & Final Details
+                      {steps[2].title || "Documents & Final Details"}
                     </h4>
                   </div>
 
@@ -461,7 +467,7 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="resume"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Resume *
+                        {steps[2]?.fields?.resume || "Upload Your Resume *"}
                       </label>
                       <input
                         type="file"
@@ -473,7 +479,8 @@ const ApplicationFormModal = (props: Props) => {
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
                       />
                       <p className="text-sm text-gray-500 mt-1">
-                        PDF, DOC, DOCX (Max 5MB)
+                        {steps[2]?.fields?.subResume ||
+                          "PDF, DOC, DOCX (Max 10MB)"}
                       </p>
                     </div>
                     <div>
@@ -481,7 +488,8 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="portfolio_file"
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Portfolio (Optional)
+                        {steps[2]?.fields?.portfolio_file ||
+                          "Upload Your Portfolio (Optional)"}
                       </label>
                       <input
                         type="file"
@@ -512,14 +520,29 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="agreedToTerms"
                         className="text-sm text-gray-700"
                       >
-                        I agree to the{" "}
-                        <a href="#" className="text-blue-600 hover:underline">
-                          Terms of Service
-                        </a>{" "}
+                        {steps[2]?.fields?.agreedToTerms?.title ||
+                          "I agree to the"}{" "}
+                        <Link
+                          href={
+                            steps[2]?.fields?.agreedToTerms?.link[0]?.href ||
+                            "#"
+                          }
+                          className="text-blue-600 hover:underline"
+                        >
+                          {steps[2]?.fields?.agreedToTerms?.link[0]?.text ||
+                            "Terms of Service"}
+                        </Link>{" "}
                         and{" "}
-                        <a href="#" className="text-blue-600 hover:underline">
-                          Privacy Policy
-                        </a>{" "}
+                        <Link
+                          href={
+                            steps[2]?.fields?.agreedToTerms?.link[1]?.href ||
+                            "#"
+                          }
+                          className="text-blue-600 hover:underline"
+                        >
+                          {steps[2]?.fields?.agreedToTerms?.link[1]?.text ||
+                            "Privacy Policy"}
+                        </Link>{" "}
                         *
                       </label>
                     </div>
@@ -537,8 +560,8 @@ const ApplicationFormModal = (props: Props) => {
                         htmlFor="allowContact"
                         className="text-sm text-gray-700"
                       >
-                        I allow TechFlow to contact me about future
-                        opportunities that match my profile
+                        {steps[2]?.fields?.allowContact ||
+                          "I allow TechFlow to contact me about future opportunities that match my profile."}
                       </label>
                     </div>
                   </div>
@@ -557,7 +580,7 @@ const ApplicationFormModal = (props: Props) => {
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
-                  Previous
+                  {buttons.previous || "Previous"}
                 </button>
 
                 <div className="flex space-x-3">
@@ -569,7 +592,7 @@ const ApplicationFormModal = (props: Props) => {
                     }}
                     className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors duration-200 font-medium"
                   >
-                    Cancel
+                    {buttons.cancel || "Cancel"}
                   </button>
 
                   {formStep < 3 ? (
@@ -583,7 +606,7 @@ const ApplicationFormModal = (props: Props) => {
                           : "bg-gray-300 text-gray-500 cursor-not-allowed"
                       }`}
                     >
-                      Next Step
+                      {buttons.next || "Next Step"}
                     </button>
                   ) : (
                     <button
@@ -622,7 +645,7 @@ const ApplicationFormModal = (props: Props) => {
                       ) : (
                         <>
                           <Send className="mr-2 h-5 w-5" />
-                          Submit Application
+                          {buttons.submit || "Submit Application"}
                         </>
                       )}
                     </button>

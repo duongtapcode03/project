@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { useServiceData } from "@/hooks/useServiceData";
+import SpinnerFallback from "@/components/layout/SpinnerFallBack";
 
 export function ServicesDetail() {
   const { data, loading, error } = useServiceData();
 
-  if (loading) return null;
+  if (loading) return <SpinnerFallback />;
   if (error || !data)
     return <div className="text-center text-red-500">{error}</div>;
 

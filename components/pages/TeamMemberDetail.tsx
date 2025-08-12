@@ -11,6 +11,7 @@ import {
   Calendar,
   Mail,
 } from 'lucide-react';
+import SpinnerFallback from "@/components/layout/SpinnerFallBack";
 import { useTeamData } from '@/hooks/useTeamData';
 
 interface TeamMemberDetailProps {
@@ -22,7 +23,9 @@ export function TeamMemberDetail({ memberId }: TeamMemberDetailProps) {
 
   if (loading) {
     return (
-      null
+      <div className="pt-20 min-h-screen flex items-center justify-center">
+        <SpinnerFallback />
+      </div>
     );
   }
 

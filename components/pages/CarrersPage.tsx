@@ -17,7 +17,9 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/sections/AnimatedSection";
 import ApplicationFormModal from "@/components/model/ApplicationFormModal";
-import { useCareers } from "@/hooks/useCareers"; // Đảm bảo đường dẫn này đúng
+import { useCareers } from "@/hooks/useCareers";
+import { log } from "node:console";
+import SpinnerFallback from "@/components/layout/SpinnerFallBack";
 
 const CareersPage = () => {
   const [selectedJob, setSelectedJob] = useState<number | null>(null);
@@ -47,11 +49,7 @@ const CareersPage = () => {
 
   // Xử lý trạng thái loading và error
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        Đang tải dữ liệu...
-      </div>
-    );
+    return <SpinnerFallback />;
   }
 
   if (error) {
@@ -72,6 +70,7 @@ const CareersPage = () => {
     companyCultureSection,
     openPositionsSection,
     ctaSection,
+    applicationModal
   } = data;
 
   const handleInputChangeOld = (
@@ -329,6 +328,7 @@ const CareersPage = () => {
           applicationData={applicationData}
           setApplicationData={setApplicationData}
           setShowApplicationForm={setShowApplicationForm}
+          applicationModal={applicationModal}
         />
       )}
 

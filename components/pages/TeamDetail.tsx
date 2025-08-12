@@ -5,12 +5,13 @@ import Link from "next/link";
 import { Linkedin, Twitter, Github, MapPin } from "lucide-react";
 
 import { useTeamData } from "@/hooks/useTeamData";
+import SpinnerFallback from "@/components/layout/SpinnerFallBack";
 
 export function TeamDetail() {
   const { data, loading, error } = useTeamData();
 
   if (loading) {
-    return null;
+    return <SpinnerFallback />;
   }
 
   if (error || !data) {

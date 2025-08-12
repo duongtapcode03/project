@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { useHighlightData } from "@/hooks/useHighlightData";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 function HighlightsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -106,7 +107,7 @@ function HighlightsSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {cta.buttons.map((btn) => (
-                <a
+                <Link
                   key={btn.text}
                   href={btn.link}
                   className={cn(
@@ -115,7 +116,7 @@ function HighlightsSection() {
                   )}
                 >
                   {btn.text}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

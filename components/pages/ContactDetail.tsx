@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { getDynamicIcon } from "@/lib/useDynamicIcon";
 import { useContactData } from "@/hooks/useContactData";
 import { useState } from "react";
-import { log } from "node:console";
+import SpinnerFallback from "@/components/layout/SpinnerFallBack";
 import Link from "next/link";
 
 export function ContactDetail() {
@@ -32,7 +32,7 @@ export function ContactDetail() {
     message: "",
   });
 
-  if (loading) return null;
+  if (loading) return <SpinnerFallback />;
   if (error || !data)
     return (
       <div className="text-center text-red-500">

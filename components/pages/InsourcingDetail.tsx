@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Users, Target, Lightbulb } from "lucide-react";
+import SpinnerFallback from "@/components/layout/SpinnerFallBack";
 import { useServiceData } from "@/hooks/useServiceData";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -14,7 +15,7 @@ const iconMap: Record<string, React.ElementType> = {
 export function InsourcingDetail() {
     const { data, loading, error } = useServiceData();
 
-    if (loading) return null;
+    if (loading) return <SpinnerFallback />;
     if (error || !data) return <div className="text-center text-red-500">{error}</div>;
 
     const { heading, benefits, services, process, success, cta } =

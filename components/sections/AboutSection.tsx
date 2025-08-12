@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { useAboutData } from "@/hooks/useAboutData";
 import * as Icons from "lucide-react";
 import { LucideIcon } from "lucide-react";
+import Link from "next/link";
 
 function AboutSection() {
   const { data, loading, error } = useAboutData();
@@ -75,12 +76,12 @@ function AboutSection() {
         >
           <h3 className="text-3xl md:text-4xl font-bold mb-6">{cta.title}</h3>
           <p className="text-xl mb-8 opacity-90">{cta.description}</p>
-          <a
+          <Link
             href={cta.button.link}
             className="inline-block bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
           >
             {cta.button.text}
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

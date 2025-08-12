@@ -26,9 +26,11 @@ function TeamSection() {
   );
 
   return (
-    <section id="team" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section
+      id="team"
+      className="py-20 bg-gradient-to-br from-gray-50 to-blue-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header */}
         <motion.div
           ref={ref}
@@ -55,9 +57,15 @@ function TeamSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <Link href={`/team/${member.id}`}>
+              <Link 
+              //Disable link
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                href={`/team/${member.id}`}
+              >
                 <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-                  
                   {/* Avatar */}
                   <div className="relative mb-6">
                     <img
@@ -72,13 +80,20 @@ function TeamSection() {
                   <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-blue-600 font-semibold mb-3">{member.role}</p>
+                  <p className="text-blue-600 font-semibold mb-3">
+                    {member.role}
+                  </p>
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed h-[116px] line-clamp-5">
-                    {member?.bio?.slice().sort((a, b) => a.length - b.length).slice(0, 3).map(bioItem=> (
-                        <>      
-                          <span>• {bioItem}</span><br />
+                    {member?.bio
+                      ?.slice()
+                      .sort((a, b) => a.length - b.length)
+                      .slice(0, 3)
+                      .map((bioItem) => (
+                        <>
+                          <span>• {bioItem}</span>
+                          <br />
                         </>
-                    ))}
+                      ))}
                   </p>
 
                   {/* Social Links */}
@@ -125,7 +140,9 @@ function TeamSection() {
           className="mt-16 text-center"
         >
           <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg">
-            <h3 className="text-3xl font-bold mb-6 text-gray-900">{cta.headline}</h3>
+            <h3 className="text-3xl font-bold mb-6 text-gray-900">
+              {cta.headline}
+            </h3>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               {cta.description}
             </p>

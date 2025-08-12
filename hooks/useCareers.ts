@@ -1,4 +1,6 @@
+import { Label } from '@/components/ui/label';
 import { useState, useEffect } from "react";
+import { W } from 'mongodb';
 
 interface Button {
   label: string;
@@ -43,11 +45,62 @@ interface OpenPositionsSection {
   description: string;
   positions: PositionDetail[];
 }
-
+interface OptionValue {
+    value: string;
+    label: string;
+}
+interface Link {
+    text: string;
+    href: string;
+}
+interface WorkLocation {
+    label: string;
+    options: OptionValue[];
+}
+interface Step {
+    title: string;
+    fields: {
+        name?: string;
+        email?: string;
+        phone?: string;
+        workLocation?: WorkLocation;
+        linkedin?: string;
+        github?: string;
+        experience?: WorkLocation;
+        expectedSalary?: WorkLocation;
+        availableStart?: string;
+        portfolio?: string;
+        coverLetter?: string;
+        resume?: string;
+        subResume?: string;
+        portfolio_file?: string;
+        agreedToTerms?: {
+            title: string;
+            link: Link[];
+        };
+        allowContact?: string;
+    }
+}
 interface CtaSection {
   title: string;
   description: string;
   button: Button;
+}
+
+interface ApplicationFormModal {
+    header: {title: string, subtitle: string};
+    steps: Step[],
+    successMessage: {
+        title: string;
+        body: string;
+        status: string;
+    };
+    buttons: {
+        cancel: string;
+        next: string;
+        previous: string;
+        submit: string;
+    }
 }
 
 export interface CareersData {
@@ -55,6 +108,7 @@ export interface CareersData {
   companyCultureSection: CompanyCultureSection;
   openPositionsSection: OpenPositionsSection;
   ctaSection: CtaSection;
+  applicationModal: ApplicationFormModal;
 }
 export function useCareers() {
   const [data, setData] = useState<CareersData | null>(null);

@@ -3,13 +3,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAboutData } from "@/hooks/useAboutData";
-import { getDynamicIcon } from "@/lib/useDynamicIcon"; // để xử lý icon động
+import SpinnerFallback from "@/components/layout/SpinnerFallBack";
+import { getDynamicIcon } from "@/lib/useDynamicIcon"; // Import dynamic icon utility
 
 export function AboutDetail() {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
     const { data, loading, error } = useAboutData();
 
-    if (loading) return null;
+    if (loading) return <SpinnerFallback />;
     if (error || !data) return <div className="text-center text-red-500">{error}</div>;
 
     const { header, story, values, milestones, stats } = data;
