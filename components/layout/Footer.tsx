@@ -20,7 +20,7 @@ export default async function Footer() {
                     {/* Company Info */}
                     <div className="col-span-1 md:col-span-2">
                         <div className="flex items-center space-x-2 mb-4">
-                            <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1 rounded-lg">
+                            <div className="bg-white p-1 rounded-lg">
                                 <Image
                                     src={company.logo}
                                     alt={company.name}
