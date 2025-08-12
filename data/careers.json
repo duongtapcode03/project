@@ -1,0 +1,271 @@
+{
+  "heroSection": {
+    "title": "Join Our Team",
+    "highlight": "Team",
+    "description": "Build the future of technology with us. We're looking for passionate, talented individuals who want to make a real impact in the tech industry.",
+    "buttons": [
+      {
+        "label": "View Open Positions",
+        "action": "scrollTo#open-positions"
+      },
+      {
+        "label": "Learn About Our Culture",
+        "action": "link#/culture"
+      }
+    ]
+  },
+  "companyCultureSection": {
+    "title": "Why Work With Us?",
+    "description": "We believe in creating an environment where innovation thrives and people grow.",
+    "benefits": [
+      {
+        "icon": "Heart",
+        "title": "Health & Wellness",
+        "description": "Comprehensive health, dental, and vision insurance plus wellness programs"
+      },
+      {
+        "icon": "Coffee",
+        "title": "Work-Life Balance",
+        "description": "Flexible hours, remote work options, and unlimited PTO policy"
+      },
+      {
+        "icon": "GraduationCap",
+        "title": "Learning & Growth",
+        "description": "Professional development budget, conferences, and internal training programs"
+      },
+      {
+        "icon": "Zap",
+        "title": "Innovation Time",
+        "description": "20% time for personal projects and exploring new technologies"
+      },
+      {
+        "icon": "Users",
+        "title": "Team Culture",
+        "description": "Collaborative environment with regular team events and activities"
+      },
+      {
+        "icon": "Award",
+        "title": "Recognition",
+        "description": "Performance bonuses, equity options, and career advancement opportunities"
+      }
+    ]
+  },
+  "openPositionsSection": {
+    "title": "Open Positions",
+    "description": "Discover exciting opportunities to grow your career with us.",
+    "positions": [
+      {
+        "id": 1,
+        "title": "Senior Full Stack Developer",
+        "department": "Engineering",
+        "location": "San Francisco, CA",
+        "type": "Full-time",
+        "salary": "$120k - $160k",
+        "experience": "5+ years",
+        "description": "We are looking for a Senior Full Stack Developer to join our engineering team and help build scalable web applications.",
+        "responsibilities": [
+          "Develop and maintain web applications using React, Node.js, and TypeScript",
+          "Collaborate with cross-functional teams to define and implement new features",
+          "Write clean, maintainable, and well-tested code",
+          "Mentor junior developers and participate in code reviews",
+          "Optimize applications for maximum speed and scalability",
+          "Stay up-to-date with emerging technologies and industry trends"
+        ],
+        "requirements": [
+          "5+ years of experience in full-stack development",
+          "Proficiency in React, Node.js, TypeScript, and modern JavaScript",
+          "Experience with databases (PostgreSQL, MongoDB)",
+          "Knowledge of cloud platforms (AWS, Azure, or GCP)",
+          "Strong understanding of RESTful APIs and GraphQL",
+          "Experience with version control systems (Git)",
+          "Excellent problem-solving and communication skills"
+        ],
+        "benefits": [
+          "Competitive salary and equity package",
+          "Comprehensive health, dental, and vision insurance",
+          "Flexible work arrangements and remote options",
+          "Professional development budget",
+          "Unlimited PTO policy"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "UX/UI Designer",
+        "department": "Design",
+        "location": "Remote",
+        "type": "Full-time",
+        "salary": "$90k - $120k",
+        "experience": "3+ years",
+        "description": "Join our design team to create intuitive and beautiful user experiences for our digital products.",
+        "responsibilities": [
+          "Design user interfaces for web and mobile applications",
+          "Conduct user research and usability testing",
+          "Create wireframes, prototypes, and high-fidelity designs",
+          "Collaborate with developers to ensure design implementation",
+          "Maintain and evolve our design system",
+          "Present design concepts to stakeholders"
+        ],
+        "requirements": [
+          "3+ years of experience in UX/UI design",
+          "Proficiency in Figma, Sketch, or Adobe Creative Suite",
+          "Strong portfolio demonstrating design process and outcomes",
+          "Understanding of user-centered design principles",
+          "Experience with responsive and mobile-first design",
+          "Knowledge of HTML/CSS is a plus",
+          "Excellent communication and presentation skills"
+        ],
+        "benefits": [
+          "Competitive salary and performance bonuses",
+          "Health and wellness benefits",
+          "Remote work flexibility",
+          "Design conference and workshop budget",
+          "Latest design tools and equipment"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "DevOps Engineer",
+        "department": "Infrastructure",
+        "location": "New York, NY",
+        "type": "Full-time",
+        "salary": "$110k - $140k",
+        "experience": "4+ years",
+        "description": "Help us build and maintain scalable infrastructure and deployment pipelines for our applications.",
+        "responsibilities": [
+          "Design and implement CI/CD pipelines",
+          "Manage cloud infrastructure on AWS/Azure/GCP",
+          "Monitor system performance and reliability",
+          "Automate deployment and scaling processes",
+          "Implement security best practices",
+          "Collaborate with development teams on infrastructure needs"
+        ],
+        "requirements": [
+          "4+ years of experience in DevOps or Site Reliability Engineering",
+          "Experience with containerization (Docker, Kubernetes)",
+          "Proficiency in Infrastructure as Code (Terraform, CloudFormation)",
+          "Knowledge of CI/CD tools (Jenkins, GitLab CI, GitHub Actions)",
+          "Experience with monitoring tools (Prometheus, Grafana, ELK stack)",
+          "Strong scripting skills (Python, Bash, PowerShell)",
+          "Understanding of networking and security principles"
+        ],
+        "benefits": [
+          "Competitive compensation package",
+          "Comprehensive benefits package",
+          "Flexible working hours",
+          "Professional certification support",
+          "Conference and training opportunities"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Product Manager",
+        "department": "Product",
+        "location": "San Francisco, CA",
+        "type": "Full-time",
+        "salary": "$130k - $170k",
+        "experience": "5+ years",
+        "description": "Lead product strategy and execution for our core technology platform.",
+        "responsibilities": [
+          "Define product vision and strategy",
+          "Manage product roadmap and prioritization",
+          "Collaborate with engineering, design, and business teams",
+          "Conduct market research and competitive analysis",
+          "Define and track key product metrics",
+          "Communicate product updates to stakeholders"
+        ],
+        "requirements": [
+          "5+ years of product management experience",
+          "Experience with B2B SaaS products",
+          "Strong analytical and data-driven decision making skills",
+          "Excellent communication and leadership abilities",
+          "Experience with agile development methodologies",
+          "Technical background or strong technical aptitude",
+          "MBA or equivalent experience preferred"
+        ],
+        "benefits": [
+          "Competitive salary and equity",
+          "Comprehensive health benefits",
+          "Flexible work environment",
+          "Product management training and certification",
+          "Stock option plan"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Data Scientist",
+        "department": "Data Science",
+        "location": "Remote",
+        "type": "Full-time",
+        "salary": "$100k - $130k",
+        "experience": "3+ years",
+        "description": "Join our data science team to build machine learning models and extract insights from data.",
+        "responsibilities": [
+          "Develop and deploy machine learning models",
+          "Analyze large datasets to identify trends and patterns",
+          "Collaborate with product teams to implement data-driven features",
+          "Build data pipelines and ETL processes",
+          "Create data visualizations and reports",
+          "Stay current with ML/AI research and best practices"
+        ],
+        "requirements": [
+          "3+ years of experience in data science or machine learning",
+          "Proficiency in Python, R, or similar languages",
+          "Experience with ML frameworks (TensorFlow, PyTorch, scikit-learn)",
+          "Strong statistical analysis and modeling skills",
+          "Experience with SQL and database systems",
+          "Knowledge of cloud platforms and big data tools",
+          "PhD or Masters in relevant field preferred"
+        ],
+        "benefits": [
+          "Competitive salary and bonuses",
+          "Health and wellness benefits",
+          "Remote work flexibility",
+          "Conference and research publication support",
+          "Access to latest ML tools and platforms"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Junior Frontend Developer",
+        "department": "Engineering",
+        "location": "San Francisco, CA",
+        "type": "Full-time",
+        "salary": "$70k - $90k",
+        "experience": "1-2 years",
+        "description": "Start your career with us as a Junior Frontend Developer and grow your skills in modern web development.",
+        "responsibilities": [
+          "Develop user interfaces using React and modern JavaScript",
+          "Implement responsive designs and ensure cross-browser compatibility",
+          "Collaborate with senior developers and designers",
+          "Write clean, maintainable code following best practices",
+          "Participate in code reviews and team meetings",
+          "Learn and apply new technologies and frameworks"
+        ],
+        "requirements": [
+          "1-2 years of frontend development experience",
+          "Proficiency in HTML, CSS, and JavaScript",
+          "Experience with React or similar frontend frameworks",
+          "Understanding of responsive design principles",
+          "Basic knowledge of version control (Git)",
+          "Strong willingness to learn and grow",
+          "Computer Science degree or equivalent experience"
+        ],
+        "benefits": [
+          "Competitive entry-level salary",
+          "Mentorship and career development programs",
+          "Health and dental insurance",
+          "Learning and development budget",
+          "Flexible work arrangements"
+        ]
+      }
+    ]
+  },
+  "ctaSection": {
+    "title": "Don't See the Right Position?",
+    "description": "We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future opportunities.",
+    "button": {
+      "label": "Send Your Resume",
+      "action": "openResumeForm"
+    }
+  }
+}

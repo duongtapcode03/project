@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Linkedin, Twitter, Github, MapPin } from 'lucide-react';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Linkedin, Twitter, Github, MapPin } from "lucide-react";
 
-import { useTeamData } from '@/hooks/useTeamData';
+import { useTeamData } from "@/hooks/useTeamData";
 
 export function TeamDetail() {
   const { data, loading, error } = useTeamData();
 
   if (loading) {
-    return null
+    return null;
   }
 
   if (error || !data) {
     return (
       <div className="text-center py-10 text-red-500">
-        {error || 'Failed to load team data'}
+        {error || "Failed to load team data"}
       </div>
     );
   }
@@ -51,7 +51,16 @@ export function TeamDetail() {
         {/* Team Members */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => {
-            const { id, name, role, image, bio, location, expertise = [], social } = member;
+            const {
+              id,
+              name,
+              role,
+              image,
+              bio,
+              location,
+              expertise = [],
+              social,
+            } = member;
 
             return (
               <motion.div
@@ -61,8 +70,15 @@ export function TeamDetail() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <Link href={`/team/${id}`}>
-                  <div className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+                <Link
+                  href={`/team/${id}`}
+                  //Disable link
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                >
+                  <div className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-default">
                     <div className="relative mb-6">
                       <img
                         src={image}
@@ -145,7 +161,9 @@ export function TeamDetail() {
           className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">{headline}</h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">{description}</p>
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            {description}
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {buttons[0] && (
               <Link href={buttons[0].link}>
