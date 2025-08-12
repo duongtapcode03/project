@@ -269,39 +269,41 @@ export function ContactDetail() {
               Our Offices
             </h2>
 
-            {offices.map((o, i) => {
-              const MapIcon = getDynamicIcon("MapPin");
-              const PhoneIcon = getDynamicIcon("Phone");
-              const ClockIcon = getDynamicIcon("Clock");
+            {offices
+              .filter((o) => o.status === 1)
+              .map((o, i) => {
+                const MapIcon = getDynamicIcon("MapPin");
+                const PhoneIcon = getDynamicIcon("Phone");
+                const ClockIcon = getDynamicIcon("Clock");
 
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                >
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {o.city}
-                  </h3>
-                  <div className="space-y-2 text-gray-600">
-                    <div className="flex items-start">
-                      <MapIcon className="h-4 w-4 mr-2 mt-1 text-blue-500" />
-                      <span className="whitespace-pre-line">{o.address}</span>
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
+                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {o.city}
+                    </h3>
+                    <div className="space-y-2 text-gray-600">
+                      <div className="flex items-start">
+                        <MapIcon className="h-4 w-4 mr-2 mt-1 text-blue-500" />
+                        <span className="whitespace-pre-line">{o.address}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <PhoneIcon className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>{o.phone}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <ClockIcon className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>{o.hours}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center">
-                      <PhoneIcon className="h-4 w-4 mr-2 text-blue-500" />
-                      <span>{o.phone}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <ClockIcon className="h-4 w-4 mr-2 text-blue-500" />
-                      <span>{o.hours}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  </motion.div>
+                );
+              })}
 
             {/* Emergency */}
             <motion.div
