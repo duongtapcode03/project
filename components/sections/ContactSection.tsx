@@ -172,7 +172,10 @@ function ContactSection() {
             >
               <h4 className="text-xl font-bold mb-4">{support.title}</h4>
               <p className="mb-6 opacity-90">{support.description}</p>
-              <button className="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+              <button 
+                onClick={() => window.location.href = support.button.link}
+                className="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+              >
                 {support.button.text}
               </button>
             </motion.div>

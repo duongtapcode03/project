@@ -315,7 +315,10 @@ export function ContactDetail() {
               <h3 className="text-xl font-bold mb-3">{emergency.title}</h3>
               <p className="mb-4 opacity-90">{emergency.description}</p>
               {/* hover:scale-105 */}
-              <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform cursor-default">
+              <button
+                onClick={() => (window.location.href = emergency?.phone)}
+                className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform cursor-default"
+              >
                 {emergency.button}
               </button>
             </motion.div>

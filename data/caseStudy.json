@@ -1,0 +1,161 @@
+{
+  "categories": [
+    "All",
+    "Web Development",
+    "Mobile Development",
+    "AI & Machine Learning",
+    "Healthcare",
+    "Enterprise Solutions",
+    "Education Technology"
+  ],
+  "caseStudies": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform Transformation",
+      "client": "RetailMax Inc.",
+      "industry": "E-Commerce",
+      "duration": "8 months",
+      "teamSize": "12 developers",
+      "image": "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "description": "Complete digital transformation of a traditional retail business into a modern e-commerce platform.",
+      "challenge": "RetailMax needed to transition from brick-and-mortar to online sales during the pandemic, requiring a scalable e-commerce solution.",
+      "solution": "Built a comprehensive e-commerce platform with React, Node.js, and AWS, featuring real-time inventory, payment processing, and analytics.",
+      "results": [
+        "300% increase in online sales",
+        "50% reduction in operational costs",
+        "99.9% uptime achievement",
+        "2M+ monthly active users"
+      ],
+      "technologies": ["React", "Node.js", "AWS", "MongoDB", "Stripe", "Redis"],
+      "category": "Web Development"
+    },
+    {
+      "id": 2,
+      "title": "Healthcare Management System",
+      "client": "MedCare Solutions",
+      "industry": "Healthcare",
+      "duration": "12 months",
+      "teamSize": "18 developers",
+      "image": "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "description": "HIPAA-compliant healthcare management system for patient records and appointment scheduling.",
+      "challenge": "MedCare needed a secure, compliant system to manage patient data across multiple locations while ensuring data privacy.",
+      "solution": "Developed a comprehensive healthcare management system with advanced security, real-time synchronization, and mobile access.",
+      "results": [
+        "40% improvement in patient satisfaction",
+        "60% reduction in administrative time",
+        "HIPAA compliance achieved",
+        "25 healthcare facilities connected"
+      ],
+      "technologies": [
+        "Angular",
+        "Python",
+        "PostgreSQL",
+        "Docker",
+        "Azure",
+        "JWT"
+      ],
+      "category": "Healthcare"
+    },
+    {
+      "id": 3,
+      "title": "FinTech Mobile Banking App",
+      "client": "NextGen Bank",
+      "industry": "Financial Services",
+      "duration": "10 months",
+      "teamSize": "15 developers",
+      "image": "https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "description": "Secure mobile banking application with advanced features and biometric authentication.",
+      "challenge": "NextGen Bank wanted to launch a mobile-first banking experience with cutting-edge security and user experience.",
+      "solution": "Created a feature-rich mobile banking app with React Native, implementing biometric security and real-time transactions.",
+      "results": [
+        "500K+ app downloads in 6 months",
+        "4.8/5 app store rating",
+        "80% reduction in branch visits",
+        "PCI DSS compliance achieved"
+      ],
+      "technologies": [
+        "React Native",
+        "Node.js",
+        "PostgreSQL",
+        "AWS",
+        "Biometric APIs",
+        "Blockchain"
+      ],
+      "category": "Mobile Development"
+    },
+    {
+      "id": 4,
+      "title": "AI-Powered Analytics Platform",
+      "client": "DataInsights Corp",
+      "industry": "Data Analytics",
+      "duration": "14 months",
+      "teamSize": "20 developers",
+      "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "description": "Machine learning platform for predictive analytics and business intelligence.",
+      "challenge": "DataInsights needed an AI-powered platform to process massive datasets and provide real-time business insights.",
+      "solution": "Built a scalable ML platform using Python, TensorFlow, and cloud infrastructure for real-time data processing and visualization.",
+      "results": [
+        "90% accuracy in predictions",
+        "10x faster data processing",
+        "$2M+ cost savings for clients",
+        "100+ ML models deployed"
+      ],
+      "technologies": [
+        "Python",
+        "TensorFlow",
+        "Kubernetes",
+        "Apache Kafka",
+        "Elasticsearch",
+        "React"
+      ],
+      "category": "AI & Machine Learning"
+    },
+    {
+      "id": 5,
+      "title": "Supply Chain Management System",
+      "client": "GlobalLogistics Ltd",
+      "industry": "Logistics",
+      "duration": "16 months",
+      "teamSize": "22 developers",
+      "image": "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "description": "End-to-end supply chain management system with IoT integration and real-time tracking.",
+      "challenge": "GlobalLogistics required a comprehensive system to track shipments across multiple countries with real-time visibility.",
+      "solution": "Developed an integrated supply chain platform with IoT sensors, blockchain for transparency, and predictive analytics.",
+      "results": [
+        "35% reduction in delivery times",
+        "99.5% shipment tracking accuracy",
+        "50+ countries coverage",
+        "$5M+ operational savings"
+      ],
+      "technologies": [
+        "Vue.js",
+        "Java",
+        "Blockchain",
+        "IoT",
+        "Oracle",
+        "Microservices"
+      ],
+      "category": "Enterprise Solutions"
+    },
+    {
+      "id": 6,
+      "title": "EdTech Learning Platform",
+      "client": "EduFuture Academy",
+      "industry": "Education",
+      "duration": "9 months",
+      "teamSize": "14 developers",
+      "image": "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "description": "Interactive online learning platform with AI-powered personalized learning paths.",
+      "challenge": "EduFuture needed a scalable platform to deliver personalized education to students worldwide during remote learning.",
+      "solution": "Created an adaptive learning platform with AI recommendations, video streaming, and collaborative tools.",
+      "results": [
+        "1M+ students enrolled",
+        "85% course completion rate",
+        "40+ countries reached",
+        "95% student satisfaction"
+      ],
+      "technologies": ["React", "Node.js", "MongoDB", "WebRTC", "AI/ML", "CDN"],
+      "category": "Education Technology"
+    }
+  ]
+}

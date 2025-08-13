@@ -5,10 +5,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X, Code2 } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +63,10 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                className={cn(
+                  "text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200",
+                  pathname === item.href ? "text-blue-600" : ""
+                )}
               >
                 {item.label}
               </Link>

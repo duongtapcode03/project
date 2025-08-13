@@ -44,10 +44,8 @@ const CareersPage = () => {
     allowContact: true,
   });
 
-  // Áp dụng hook useCareers
   const { data, loading, error } = useCareers();
 
-  // Xử lý trạng thái loading và error
   if (loading) {
     return <SpinnerFallback />;
   }
@@ -64,7 +62,6 @@ const CareersPage = () => {
     return null;
   }
 
-  // Destructure data từ hook
   const {
     heroSection,
     companyCultureSection,
@@ -84,7 +81,6 @@ const CareersPage = () => {
     });
   };
 
-  // Ánh xạ các icon dựa trên tên string từ JSON
   const iconMap = {
     Heart: Heart,
     Coffee: Coffee,
