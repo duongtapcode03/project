@@ -2,13 +2,16 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { motion } from "framer-motion";
 import { Menu, X, Code2 } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Navbar() {
+  const { t } = useTranslation('common');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -22,12 +25,12 @@ export function Navbar() {
   }, []);
 
   const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/team", label: "Team" },
-    { href: "/contact", label: "Contact" },
-    { href: "/careers", label: "Careers" },
+    { href: "/", label: t('nav.home') },
+    { href: "/about", label: t('nav.about') },
+    { href: "/services", label: t('nav.services') },
+    { href: "/team", label: t('nav.team') },
+    { href: "/contact", label: t('nav.contact') },
+    { href: "/careers", label: t('nav.careers') },
   ];
 
   return (
@@ -71,11 +74,12 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
+            <LanguageSwitcher />
             <Link
               href="/contact"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 transform hover:scale-105"
             >
-              Get Started
+              {t('nav.getStarted')}
             </Link>
           </div>
 
@@ -109,12 +113,15 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
+            <div className="px-4 py-2">
+              <LanguageSwitcher />
+            </div>
             <Link
               href="/contact"
               className="block mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-center hover:shadow-lg transition-all duration-200"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Get Started
+              {t('nav.getStarted')}
             </Link>
           </motion.div>
         )}

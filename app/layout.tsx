@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { appWithTranslation } from 'next-i18next';
 import { Navbar } from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer"; // Giờ Footer là server component
 import ScrollToTop from "@/components/layout/ScrollToTop";
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -32,3 +33,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default appWithTranslation(RootLayout);

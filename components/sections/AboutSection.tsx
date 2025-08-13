@@ -2,20 +2,35 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "next-i18next";
 import { useAboutData } from "@/hooks/useAboutData";
 import * as Icons from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 function AboutSection() {
+  const { t } = useTranslation('common');
   const { data, loading, error } = useAboutData();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   if (loading) return null;
   if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
-  if (!data) return null;
 
-  const { header, features, cta } = data;
+  // Use translations as fallback
+  const aboutData = data || {
+    header: {
+      title: t('about.title'),
+      description: t('about.description')
+    },
+    features: [],
+    cta: {
+      title: t('about.cta.title'),
+      description: t('about.cta.description'),
+      button: { text: t('about.cta.button'), link: '/about' }
+    }
+  };
+
+  const { header, features, cta } = aboutData;
 
   return (
     <section id="about" className="py-20 bg-white">
@@ -39,7 +54,8 @@ function AboutSection() {
         </motion.div>
 
         {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {features && features.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map(({ icon, title, description }, index) => {
             const IconComponent = Icons[
               icon as keyof typeof Icons
@@ -65,7 +81,8 @@ function AboutSection() {
               </motion.div>
             );
           })}
-        </div>
+          </div>
+        )}
 
         {/* CTA */}
         <motion.div

@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "services": "Dịch vụ",
+    "team": "Đội ngũ",
+    "contact": "Liên hệ",
+    "careers": "Tuyển dụng",
+    "getStarted": "Bắt đầu"
+  },
+  "hero": {
+    "title": ["Giải pháp công nghệ", "Sáng tạo"],
+    "description": "Trao quyền cho doanh nghiệp với các giải pháp công nghệ tiên tiến. Chúng tôi cung cấp phát triển phần mềm xuất sắc, dịch vụ đám mây và chuyển đổi số.",
+    "buttons": {
+      "getStarted": "Bắt đầu",
+      "watchDemo": "Xem Demo"
+    }
+  },
+  "about": {
+    "title": "Về FlexiNet",
+    "description": "Chúng tôi là công ty công nghệ hàng đầu chuyên cung cấp các giải pháp sáng tạo thúc đẩy tăng trưởng kinh doanh và chuyển đổi số.",
+    "cta": {
+      "title": "Sẵn sàng chuyển đổi doanh nghiệp của bạn?",
+      "description": "Hãy thảo luận về cách chúng tôi có thể giúp bạn đạt được mục tiêu công nghệ.",
+      "button": "Tìm hiểu thêm về chúng tôi"
+    }
+  },
+  "services": {
+    "title": "Dịch vụ của chúng tôi",
+    "subtitle": "Giải pháp công nghệ toàn diện được thiết kế riêng cho nhu cầu kinh doanh của bạn",
+    "cta": {
+      "title": "Sẵn sàng bắt đầu?",
+      "subtitle": "Hãy thảo luận về dự án của bạn và tìm giải pháp hoàn hảo cho nhu cầu của bạn.",
+      "buttons": {
+        "contact": "Liên hệ với chúng tôi",
+        "portfolio": "Xem danh mục"
+      }
+    }
+  },
+  "team": {
+    "title": "Gặp gỡ đội ngũ của chúng tôi",
+    "subtitle": "Các chuyên gia đam mê tận tâm mang lại kết quả xuất sắc và thúc đẩy sự đổi mới trong mọi việc chúng tôi làm.",
+    "cta": {
+      "headline": "Tham gia đội ngũ đang phát triển của chúng tôi",
+      "description": "Chúng tôi luôn tìm kiếm những cá nhân tài năng có chung đam mê về công nghệ và đổi mới. Khám phá cơ hội nghề nghiệp với FlexiNet.",
+      "buttons": {
+        "careers": "Xem vị trí tuyển dụng",
+        "contact": "Liên lạc"
+      }
+    }
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "description": "Sẵn sàng bắt đầu dự án tiếp theo của bạn? Liên hệ với chúng tôi ngay hôm nay và hãy thảo luận về cách chúng tôi có thể giúp bạn đạt được mục tiêu.",
+    "form": {
+      "firstName": "Tên",
+      "lastName": "Họ",
+      "email": "Địa chỉ email",
+      "message": "Tin nhắn của bạn",
+      "submit": "Gửi tin nhắn"
+    },
+    "support": {
+      "title": "Hỗ trợ 24/7",
+      "description": "Cần hỗ trợ ngay lập tức? Đội ngũ hỗ trợ của chúng tôi sẵn sàng giúp đỡ.",
+      "button": "Nhận hỗ trợ"
+    }
+  },
+  "footer": {
+    "description": "Giải pháp công nghệ hàng đầu cho doanh nghiệp hiện đại.",
+    "quickLinks": "Liên kết nhanh",
+    "contactInfo": "Thông tin liên hệ",
+    "policies": "Chính sách"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "retry": "Thử lại",
+    "backToHome": "Về trang chủ",
+    "readMore": "Đọc thêm",
+    "learnMore": "Tìm hiểu thêm",
+    "viewAll": "Xem tất cả",
+    "comingSoon": "Sắp ra mắt...",
+    "language": "Ngôn ngữ"
+  }
+}

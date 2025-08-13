@@ -1,20 +1,32 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Play } from 'lucide-react';
 import { useHeroData } from '@/hooks/useHeroSectionData';
 
 function HeroSection() {
+  const { t } = useTranslation('common');
   const { data, loading, error } = useHeroData();
   const [showVideo, setShowVideo] = useState(false);
 
   if (loading) return null;
   if (error) return <p className="text-center text-red-500">{error}</p>;
-  if (!data) return null;
 
-  const { title, description, buttons, stats } = data;
+  // Use translations as fallback if API data is not available
+  const heroData = data || {
+    title: t('hero.title', { returnObjects: true }) as string[],
+    description: t('hero.description'),
+    buttons: [
+      { text: t('hero.buttons.getStarted'), link: '/contact', type: 'primary' as const },
+      { text: t('hero.buttons.watchDemo'), link: '#', type: 'secondary' as const }
+    ],
+    stats: []
+  };
+
+  const { title, description, buttons, stats } = heroData;
 
   return (
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -33,10 +45,10 @@ function HeroSection() {
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 mt-20">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
-              {title[0]}
+              {Array.isArray(title) ? title[0] : title}
             </span>
               <br />
-              <span className="text-gray-900">{title[1]}</span>
+              <span className="text-gray-900">{Array.isArray(title) ? title[1] : ''}</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -85,12 +97,13 @@ function HeroSection() {
           </motion.div>
 
           {/* Stats */}
-          <motion.div
+          {stats && stats.length > 0 && (
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-16"
-          >
+            >
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {stats.map((stat) => (
                   <div
@@ -104,7 +117,8 @@ function HeroSection() {
                   </div>
               ))}
             </div>
-          </motion.div>
+            </motion.div>
+          )}
         </div>
       </section>
   );

@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "team": "Team",
+    "contact": "Contact",
+    "careers": "Careers",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "title": ["Innovative Technology", "Solutions"],
+    "description": "Empowering businesses with cutting-edge technology solutions. We deliver exceptional software development, cloud services, and digital transformation.",
+    "buttons": {
+      "getStarted": "Get Started",
+      "watchDemo": "Watch Demo"
+    }
+  },
+  "about": {
+    "title": "About FlexiNet",
+    "description": "We are a leading technology company dedicated to delivering innovative solutions that drive business growth and digital transformation.",
+    "cta": {
+      "title": "Ready to Transform Your Business?",
+      "description": "Let's discuss how we can help you achieve your technology goals.",
+      "button": "Learn More About Us"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive technology solutions tailored to your business needs",
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Let's discuss your project and find the perfect solution for your needs.",
+      "buttons": {
+        "contact": "Contact Us",
+        "portfolio": "View Portfolio"
+      }
+    }
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "subtitle": "Passionate professionals dedicated to delivering exceptional results and driving innovation in everything we do.",
+    "cta": {
+      "headline": "Join Our Growing Team",
+      "description": "We're always looking for talented individuals who share our passion for technology and innovation. Explore career opportunities with FlexiNet.",
+      "buttons": {
+        "careers": "View Open Positions",
+        "contact": "Get In Touch"
+      }
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "description": "Ready to start your next project? Contact us today and let's discuss how we can help you achieve your goals.",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "message": "Your Message",
+      "submit": "Send Message"
+    },
+    "support": {
+      "title": "24/7 Support Available",
+      "description": "Need immediate assistance? Our support team is here to help.",
+      "button": "Get Support"
+    }
+  },
+  "footer": {
+    "description": "Leading technology solutions for modern businesses.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "policies": "Policies"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "backToHome": "Back to Home",
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "comingSoon": "Coming Soon...",
+    "language": "Language"
+  }
+}
